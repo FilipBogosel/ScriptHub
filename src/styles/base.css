@@ -1,0 +1,42 @@
+/* ================================================= */
+/*                  RESET & BASE                    */
+/* ================================================= */
+
+*{
+    box-sizing: border-box; 
+}
+body{
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    margin:0;
+    padding: 0;
+    line-height: 1.6;
+}
+header{
+      line-height: 1em;;
+}
+h1, h2, h3, h4{
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+h1{
+    font-size: 2rem;
+}
+h2{
+    font-size: 1.5rem;
+}
+h3{
+    font-size: 1.2rem;
+}
+h4{
+    font-size: 1rem;
+}
+p{
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+a{
+    color: var(--accent-primary);
+    text-decoration: none;
+}

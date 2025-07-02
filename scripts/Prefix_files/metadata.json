@@ -1,0 +1,7 @@
+{
+    "name": "Prefixer",
+    "version": "1.0.0",
+    "description": "Prefixes all file names with a specified string.",
+    "category": "File Management",
+    "tags": ["File Management", "Prefixer", "Rename", "Files"]
+}

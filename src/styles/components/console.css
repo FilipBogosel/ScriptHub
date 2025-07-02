@@ -1,0 +1,15 @@
+/* ================================================= */
+/*                  OUTPUT CONSOLE                  */
+/* ================================================= */
+
+.output-console{
+    margin-top: 2rem;
+    background-color: #010409;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.output-console pre {
+    margin: 0; 
+}

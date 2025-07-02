@@ -1,0 +1,7 @@
+{
+    "name": "Organizer",
+    "version": "1.0.0",
+    "description": "Organizes files using extensions.",
+    "category": "File Management",
+    "tags": ["File Management", "Organizer", "Move", "Files"]
+}

@@ -1,0 +1,19 @@
+/* ================================================= */
+/*                  BUTTON COMPONENTS               */
+/* ================================================= */
+
+button{
+    padding: 0.25rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    margin-left: 0.5rem;
+    background-color: #21262d;
+    color: var(--accent-hover);
+    border: 1px solid var(--border-color);
+}
+
+.run-button{
+    background-color: var(--accent-green);
+    color: #fff;
+    border: none;
+}

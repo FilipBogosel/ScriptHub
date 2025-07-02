@@ -1,0 +1,7 @@
+{
+    "name" : "QRGenerator",
+    "version" : "1.0.0",
+    "description" : "A simple QR code generator for Python",
+    "category" : "Graphics",
+    "tag" : ["qr", "qrcode", "generator", "QRGenerator"]
+}
