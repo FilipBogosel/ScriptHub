@@ -25,6 +25,12 @@
     padding: 0.75rem 1.75rem;
 }
 
+
+.sidebar-nav ul li a:hover{
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
 .content-area{
     padding: 2rem;
     flex-grow: 1;

@@ -23,6 +23,13 @@
     font-size: 0.9rem;
 }
 
+.script-card:hover{
+    transform: scale(1.02);
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 4px 8px rgba(94, 93, 92, 0.436)
+    /*TODO: For later review!*/
+}
+
 .card-footer{
     font-size: 0.8rem;
     margin-top: 1rem;
