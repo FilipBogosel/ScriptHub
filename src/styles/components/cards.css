@@ -39,3 +39,19 @@
     padding: 0.25rem 0.5rem;
     font-weight: 500;
 }
+
+.script-card--official{
+    position: relative;
+
+}
+
+.new-badge {
+    background-color: var(--accent-green);
+    padding: 0.3rem 0.5rem;
+    border-radius: 6px; 
+    font-size: 0.75rem;
+    font-weight: 600;
+    position:absolute;
+    top:0.75rem;
+    right:1.5rem;
+}
