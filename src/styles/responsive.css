@@ -4,3 +4,60 @@
 
 /* Add your responsive styles here as you learn */
 
+@media screen and (max-width: 800px) {
+
+    .sidebar-nav{
+        display: block;
+        width: 100%;
+        border-right: 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .app-layout{
+        display: block;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .toolbar{
+        display: block;
+    }
+
+    .toolbar input{
+        width: 100%;
+    }
+
+    .form-group{
+        display:block;
+    }
+
+    .form-group input, .form-group textarea {
+        width:80%;
+    }
+
+    h1{
+        font-size: 1.5rem;
+    }
+    h2{
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .content-area{
+        padding: 1rem;
+    }
+
+    .card-footer{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .card-footer button{
+        margin-top: 0.5rem;
+    }
+
+
+}
+
