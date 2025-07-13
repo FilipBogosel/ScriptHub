@@ -18,8 +18,9 @@
      <!-- Main Navi sidebar will go here-->
       <nav class="sidebar-nav">
         <ul>
-            <li><a href="#dashboard-view">Dashboard</a></li>
-            <li><a href="#ai-assistant-view">AI-Assistant</a></li>
+            <li><a href="#official-scripts">Official Scripts</a></li>
+            <li><a href="#my-scripts">My Scripts</a></li>
+            <li><a href="#comunity-scripts">Comunity Scripts</a></li>
             <li><a href="#settings-view">Settings</a></li>
         </ul>
       </nav>
@@ -42,41 +43,85 @@
                 </select>
             </div>
             <!-- Official/Admin scripts secction -->
-             <h3>Official Scripts</h3>
-             <div class="script-list">
-                <article class="script-card script-card--official">
-                    <h3>File Organizer</h3>
-                    <p>Organizes files in a folder by extension.</p>
-                    <div class="card-footer">
-                        <span class="category">File Management</span>
-                        <button>View</button>
-                    </div>
-                    <span class="new-badge">New!</span>
-                </article>
-                <article class="script-card script-card--official">
-                    <h3>Image Compressor</h3>
-                    <p>Compresses JPG and PNG images.</p>
-                     <div class="card-footer">
-                        <span class="category">Media</span>
-                        <button>View</button>
-                    </div>
-                </article>
-            </div>
+             <section class="view-section" id="official-scripts">
+                    <h3>Official Scripts</h3>
+                <div class="script-list" >
+                    <article class="script-card script-card--official">
+                        <h3>File Organizer</h3>
+                        <p>Organizes files in a folder by extension.</p>
+                        <div class="card-footer">
+                            <span class="category">File Management</span>
+                            <button>View</button>
+                        </div>
+                        <span class="new-badge">New!</span>
+                    </article>
+                    <article class="script-card script-card--official">
+                        <h3>Image Compressor</h3>
+                        <p>Compresses JPG and PNG images.</p>
+                        <div class="card-footer">
+                            <span class="category">Media</span>
+                            <button>View</button>
+                        </div>
+                    </article>
+                </div>
+             </section>
 
 
          <!-- User's scripts section -->
 
-         <h3>My Scripts</h3>
-         <div class="script-list">
-            <article class="script-card">
-               <h3>My Custom Backup</h3>
-               <p>Backs up my project folder to an external drive.</p>
-                <div class="card-footer">
-                   <span class="category">Backup</span>
-                   <button>View</button>
-               </div>
-           </article>
-       </div>
+         <section class="view-section" id="my-scripts">
+
+            <h3>My Scripts</h3>
+            <div class="script-list" >
+               <article class="script-card">
+                  <h3>My Custom Backup</h3>
+                  <p>Backs up my project folder to an external drive.</p>
+                   <div class="card-footer">
+                      <span class="category">Backup</span>
+                      <button>View</button>
+                  </div>
+              </article>
+          </div>
+         </section>
+
+         <!-- Community scripts section -->
+            <section class="view-section" id="comunity-scripts">
+                <h3>Community Scripts</h3>
+                <div class="script-list" >
+                   <article class="script-card">
+                      <h3>QR Code Generator</h3>
+                      <p>Generates QR codes from text or URLs with customizable size and format.</p>
+                       <div class="card-footer">
+                          <span class="category">Automation</span>
+                          <button>View</button>
+                      </div>
+                  </article>
+                  <article class="script-card">
+                      <h3>PDF Merger</h3>
+                      <p>Combines multiple PDF files into a single document with custom ordering.</p>
+                       <div class="card-footer">
+                          <span class="category">File Management</span>
+                          <button>View</button>
+                      </div>
+                  </article>
+                  <article class="script-card">
+                      <h3>YouTube Downloader</h3>
+                      <p>Downloads YouTube videos in various formats and quality settings.</p>
+                       <div class="card-footer">
+                          <span class="category">Media</span>
+                          <button>View</button>
+                      </div>
+                  </article>
+                  <article class="script-card">
+                      <h3>Password Generator</h3>
+                      <p>Creates secure passwords with customizable length and character sets.</p>
+                       <div class="card-footer">
+                          <span class="category">Automation</span>
+                          <button>View</button>
+                      </div>
+                  </article>
+              </div>
+            </section>
         </section>
 
          <!-- ==================================================== -->
@@ -98,26 +143,8 @@
                 <pre><code>Awaiting execution...</code></pre>
             </div>
          </section>
-        <!-- ==================================================== -->
-        <!-- AI-Assistant View: Allows users to generate scripts using AI -->
-        <section class="ai-assistant-view" id="ai-assistant-view">
-            <h2>AI-Assistant</h2>
-            <p>Describe the script you need in plain language.</p>
-            <form class="ai-form" action="">
-                <div class="form-group">
-                    <label for="ai-prompt">Your Prompt:</label>
-                    <br>
-                    <textarea id="ai-prompt" name="ai-prompt" rows="4" cols="25" placeholder="Create a Python script that renames .txt files to have the today date appended."></textarea>
-                </div>
-                <button type="submit" class="run-button">Generate Script</button>
-            </form>
-            <div class="output-console">
-                <h3>Generated Code</h3>
-                <pre><code># Your generated Python code will appear here...</code></pre>
-            </div>
-        </section>
         <!-- Settings View: User preferences and configurations -->
-        <section class="settings-view" id="settings-view">
+        <section class="settings-view view-section" id="settings-view" >
             <h2>Settings</h2>
             <p>Configure your application settings below.</p>
             <form class="settings-form" action="">
@@ -139,5 +166,7 @@
         <p>&copy;2025 ScriptHub. All rights reserved.</p>
         <p>Version 1.0.0</p>
      </footer>
+
+     <script src="./src/js/main.js" defer></script>
 </body>
 </html>
