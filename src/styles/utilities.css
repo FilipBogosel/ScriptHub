@@ -3,3 +3,9 @@
 /* ================================================= */
 
 /* Add your utility classes here as you learn */
+
+
+.active-link{
+    color: var(--accent-hover);
+    font-weight: bold;
+}

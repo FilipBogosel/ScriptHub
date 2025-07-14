@@ -1,6 +1,18 @@
+
 /* ================================================= */
 /*                  LAYOUT SYSTEM                   */
 /* ================================================= */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
 .app-header{
     background-color: var(--bg-secondary);
@@ -37,6 +49,7 @@
 }
 
 .app-layout{
+    flex: 1 0 auto;
     display: flex;
 }
 
@@ -49,4 +62,6 @@
     line-height: 0.5rem;
     width: 100%;
     box-sizing: border-box; /* Ensures padding doesn't add to width */
+    flex-shrink: 0;
+    position: static;
 }

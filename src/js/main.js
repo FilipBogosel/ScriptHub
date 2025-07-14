@@ -8,7 +8,7 @@ function showView(viewId) {
     viewSections.forEach(view => {
         if (view.id === viewId) {
             view.style.display = "block";
-            if(viewId === "settings"){
+            if(viewId === "settings-view"){
                 document.getElementById("script-detail-view").style.display = "none";
             }
             else{
@@ -25,6 +25,10 @@ navLinks.forEach(link => {
     link.addEventListener("click", (event)=>{
         event.preventDefault();
         const targetId = link.getAttribute("href").slice(1);
+        navLinks.forEach(link2 => {
+            link2.classList.remove("active-link");
+        });
+        link.classList.add("active-link");
         showView(targetId);
     });
 
@@ -32,3 +36,6 @@ navLinks.forEach(link => {
 });
 
 showView("official-scripts");
+
+// =========== Show active nav page ============
+
