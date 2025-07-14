@@ -10,9 +10,13 @@ function showView(viewId) {
             view.style.display = "block";
             if(viewId === "settings-view"){
                 document.getElementById("script-detail-view").style.display = "none";
+                document.getElementById("dashboard-title").style.display = "none";
+                document.querySelector(".toolbar").style.display = "none";
             }
             else{
                 document.getElementById("script-detail-view").style.display = "block";
+                document.getElementById("dashboard-title").style.display = "block";
+                document.querySelector(".toolbar").style.display = "block";
             }
         }
         else {

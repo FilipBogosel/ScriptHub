@@ -8,4 +8,5 @@
 .active-link{
     color: var(--accent-hover);
     font-weight: bold;
+    text-decoration: underline;
 }
