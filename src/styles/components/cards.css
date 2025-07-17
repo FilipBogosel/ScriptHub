@@ -13,6 +13,7 @@
     padding: 1.5rem;
     border-radius: 8px;
     margin-bottom: 1.5rem;
+    position: relative;
 }
 
 .script-card h3{
@@ -45,10 +46,6 @@
     border-radius: 12px;
     padding: 0.25rem 0.5rem;
     font-weight: 500;
-}
-
-.script-card--official{
-    position: relative;
 }
 
 .new-badge {
