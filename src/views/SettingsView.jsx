@@ -23,6 +23,7 @@ function SettingsView({
     usernameError = '',
     usernameSuccess = '',
     passwordSuccess = '',
+    rootFolder = '',
 }) {
 
     const [newPassword, setNewPassword] = useState('');
@@ -166,6 +167,12 @@ function SettingsView({
                     </Button>
                 </form>
             )}
+
+            //the part about my scripts
+            <div className="about-my-scripts">
+                <h3>About My Scripts Feature</h3>
+                <p>You can add a new script of your on making if you create a folder in which you include the Python script and a metadata.json file. Then you should copy that folder in the "my-scripts" folder in the root of the project : {`${rootFolder}/my-scripts`}. After that, you can see your script in the "My Scripts" section of the app.</p>
+            </div>
 
 
 
