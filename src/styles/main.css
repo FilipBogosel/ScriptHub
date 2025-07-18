@@ -12,6 +12,7 @@
 @import './components/console.css';
 @import './utilities.css';
 @import './responsive.css';
+@import '../views/SettingsView.css';
 
 
 
