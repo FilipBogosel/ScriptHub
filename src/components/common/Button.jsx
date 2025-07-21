@@ -9,13 +9,14 @@ function Button({ children,
     onClick,
     type = 'button',
     className = '',
-    variant = 'default' }) {
+    variant = 'default',
+    disabled = false}) {
     const baseClass = 'button';
     const variantClass = variant === 'run' ? 'run-button' : '';
     const fullClassName = `${baseClass} ${variantClass} ${className}`.trim();
 
     return (
-        <button className={fullClassName} type={type} onClick={onClick}>{children}</button>
+        <button disabled={disabled} className={fullClassName} type={type} onClick={onClick}>{children}</button>
     );
 }
 

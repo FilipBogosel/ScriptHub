@@ -23,23 +23,101 @@
 }
 
 /* Account Info Card */
-.settings-view > div:first-of-type {
+.account-info-card {
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1.5rem;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.2s ease;
+}
+
+.account-info-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.account-info-card h3 {
+    margin-top: 0 !important;
+    margin-bottom: 1.5rem !important;
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--accent-primary) !important;
+    padding-bottom: 0.75rem !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.account-info-card h3::before {
+    content: "👤";
+    font-size: 1.2rem;
+}
+
+.account-info-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     margin-bottom: 2rem;
 }
 
-.settings-view > div:first-of-type p {
-    margin: 0.5rem 0;
+.account-info-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background-color: var(--bg-primary);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.account-info-label {
+    font-weight: 600;
+    color: var(--text-secondary);
+    min-width: 80px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.account-info-value {
     color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.account-info-card .logout-button {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-left: 1rem;
+}
+
+.account-info-card .logout-button::before {
+    content: "🚪";
     font-size: 1rem;
 }
 
-.settings-view > div:first-of-type p:first-of-type {
-    font-weight: 600;
-    color: var(--accent-primary);
+.account-info-card .logout-button:hover {
+    background: linear-gradient(135deg, #c82333, #a71e2a);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+}
+
+.account-info-card .logout-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
 }
 
 /* Form Sections */
@@ -122,29 +200,26 @@
 }
 
 /* Settings Specific Buttons */
-.logout-button, .login-button {
-    background-color: #dc3545;
+.login-button {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-hover));
     color: white;
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    font-weight: 500;
-    margin-left: 0;
-    margin-top: 1rem;
-    transition: all 0.2s ease;
-}
-
-.logout-button:hover, .login-button:hover {
-    background-color: #c82333;
-    transform: translateY(-1px);
-}
-
-.login-button {
-    background-color: var(--accent-primary);
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 2rem auto 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(68, 147, 248, 0.3);
+    cursor: pointer;
+    display: block;
+    max-width: 200px;
 }
 
 .login-button:hover {
-    background-color: var(--accent-hover);
+    background: linear-gradient(135deg, var(--accent-hover), #4493f8);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(68, 147, 248, 0.4);
 }
 
 .update-button {
@@ -278,4 +353,28 @@
 
 .form-group input:valid:not(:focus):not(:placeholder-shown) {
     border-color: var(--accent-green);
+}
+
+
+.about-my-scripts {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.about-my-scripts h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    border-bottom: none;
+    padding-bottom: 0;
+    font-size: 2rem;
+}
+
+.about-my-scripts p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
 }

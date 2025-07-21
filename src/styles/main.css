@@ -12,7 +12,8 @@
 @import './components/console.css';
 @import './utilities.css';
 @import './responsive.css';
-@import '../views/SettingsView.css';
+@import '../views/SettingsView/SettingsView.css';
+@import '../views/ScriptDetailView/ScriptDetailView.css';
 
 
 

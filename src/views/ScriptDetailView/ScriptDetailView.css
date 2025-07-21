@@ -1,0 +1,17 @@
+/* ================================================= */
+/*              SCRIPT DETAIL VIEW STYLES          */
+/* ================================================= */
+
+/* Script Header */
+.script-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* File Input Groups */
+.input-group {
+    display: flex;
+    gap: 0.75rem;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import FormGroup from "../components/forms/FormGroup";
-import Button from "../components/common/Button";
-import Input from "../components/common/Input";
+import FormGroup from "../../components/forms/FormGroup";
+import Button from "../../components/common/Button";
+import Input from "../../components/common/Input";
 
 //user -> the user object containing user settings(username, email, etc.)
 //The structure for the settings view is:
@@ -58,7 +58,7 @@ function SettingsView({
     const handleUsernameSubmit = (e) => {
         e.preventDefault();
 
-        if (newUsername.length < 4){
+        if (newUsername.length < 4) {
             alert("Username too short! I must be at least 4 characters long.");
             return;
         }
@@ -70,7 +70,7 @@ function SettingsView({
         //clear the username input
 
         setNewUsername('');
-    
+
     }
 
 
@@ -80,12 +80,20 @@ function SettingsView({
             <p>Your settings and important information.</p>
             {
                 isLoggedIn ? (
-                    <>
+                    <div className="account-info-card">
                         <h3>Account Information</h3>
-                        <p>Username: {user.username}</p>
-                        <p>Email: {user.email}</p>
+                        <div className="account-info-details">
+                            <div className="account-info-item">
+                                <span className="account-info-label">Username:</span>
+                                <span className="account-info-value">{user.username}</span>
+                            </div>
+                            <div className="account-info-item">
+                                <span className="account-info-label">Email:</span>
+                                <span className="account-info-value">{user.email}</span>
+                            </div>
+                        </div>
                         <Button onClick={onLogout} className="logout-button">Logout</Button>
-                    </>
+                    </div>
                 ) : (
                     <Button onClick={onLogin} className="login-button">Login</Button>
                 )
@@ -125,7 +133,7 @@ function SettingsView({
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
-                            />
+                        />
                     </FormGroup>
                     {newPassword && confirmPassword && newPassword !== confirmPassword && (<p className="error-message">Passwords do not match!</p>)}
                     {passwordError && (<p className="error-message">{passwordError}</p>)}
@@ -168,7 +176,6 @@ function SettingsView({
                 </form>
             )}
 
-            //the part about my scripts
             <div className="about-my-scripts">
                 <h3>About My Scripts Feature</h3>
                 <p>You can add a new script of your on making if you create a folder in which you include the Python script and a metadata.json file. Then you should copy that folder in the "my-scripts" folder in the root of the project : {`${rootFolder}/my-scripts`}. After that, you can see your script in the "My Scripts" section of the app.</p>
@@ -176,8 +183,8 @@ function SettingsView({
 
 
 
-
         </section>
+
     );
 }
 
