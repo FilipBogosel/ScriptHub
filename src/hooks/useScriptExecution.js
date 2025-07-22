@@ -30,14 +30,80 @@ export function useScriptExecution() {
         setOutput('Starting script execution...');
 
         try{
-            await new Promise()
+            //mock/test implementation - to be replaced 
+            await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate script execution delay
+            setOutput(`Script "${script.name}" executed successfully!`);
         }
         catch(error){
-
+            setExecutionError(`❌ Error executing script: ${error.message}`);
+            setOutput("Execution failed!");
         }
+        finally{setIsRunning(false);}
+    };
+
+    const handleDownloadScript = async (script) => {
+        setIsDownloading(true);
+        setExecutionError('');
+        setOutput('Starting script download...');
+
+        try{
+            //mock/test implementation - to be replaced 
+            await new Promise(resolve => setTimeout(resolve, 2500)); // Simulate script download delay
+            setOutput(`"${script.name}" downloaded successfully!`);
+        }
+        catch(error){
+            setExecutionError(`❌ Error downloading script: ${error.message}`);
+            setOutput("Download failed!");
+        }
+        finally{setIsDownloading(false);}
+    };
+
+    const handleUploadScript = async (formData, script) => {
+        setIsUploading(true);
+        setExecutionError('');
+        setOutput('Starting script uploading...');
+
+        try{
+            //mock/test implementation - to be replaced 
+            await new Promise(resolve => setTimeout(resolve, 3500)); // Simulate script execution delay
+            setOutput(`Script "${script.name}" uploaded successfully!`);
+        }
+        catch(error){
+            setExecutionError(`❌ Error uploading script: ${error.message}`);
+            setOutput("Upload failed!");
+        }
+        finally{setIsUploading(false);}
+    };
+
+    const handleBrowseFile = (fieldName)=>{
+        // Mock file selection - replace with real file dialog
+        const mockPath = `C:\\Users\\Example\\${fieldName}-${Date.now()}`;
+        handleFormChange(fieldName,mockPath);
+    };
+
+    const resetExecutionState = () => {
+        setFormData({});
+        setIsRunning(false);
+        setIsDownloading(false);
+        setIsUploading(false);
+        setOutput("Awaiting execution...");
+        setExecutionError('');
     };
 
 
-
+    return({
+        isRunning,
+        isUploading,
+        isDownloading,
+        formData,
+        output,
+        executionError,
+        initializeFormData,
+        resetExecutionState,
+        handleBrowseFile,
+        handleRunScript,
+        handleDownloadScript,
+        handleUploadScript
+    });
 
 }
