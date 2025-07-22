@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScriptHub - Script Management and executing app</title>
+    <link rel="stylesheet" href="./src/styles/main.css">
+</head>
+<body>
+    <!-- Main app header -->
+    <header class="app-header">
+        <h1>ScriptHub</h1>
+        <h4>Your go-to app for finding, managing, and executing scripts easily</h4>
+    </header>
+
+        
+    <div class="app-layout">
+     <!-- Main Navi sidebar will go here-->
+      <nav class="sidebar-nav">
+        <ul>
+            <li><a href="#official-scripts">Official Scripts</a></li>
+            <li><a href="#my-scripts">My Scripts</a></li>
+            <li><a href="#comunity-scripts">Comunity Scripts</a></li>
+            <li><a href="#settings-view">Settings</a></li>
+        </ul>
+      </nav>
+
+    <main class="content-area">
+        <!-- ==================================================== -->
+        <!-- Dashboard View: Shows all available scripts          -->
+        <!-- ==================================================== -->
+        <section id="dashboard-view">
+            <h2 id="dashboard-title">Dashboard</h2>
+            <div class="toolbar">
+                <input type="search" placeholder="Search scripts..." class="search-bar">
+                <select name="categories" id="categories">
+                    <option value="all">All Categories</option>
+                    <option value="file-management">File Management</option>
+                    <option value="media">Media</option>
+                    <option value="backup">Backup</option>
+                    <option value="automation">Automation</option>
+                    <option value="development">Development</option>
+                </select>
+            </div>
+            <!-- Official/Admin scripts secction -->
+             <section class="view-section" id="official-scripts">
+                    <h3>Official Scripts</h3>
+                <div class="script-list" >
+                    <article class="script-card script-card--official">
+                        <h3>File Organizer</h3>
+                        <p>Organizes files in a folder by extension.</p>
+                        <div class="card-footer">
+                            <span class="category">File Management</span>
+                            <button>View</button>
+                        </div>
+                        <span class="new-badge">New!</span>
+                    </article>
+                    <article class="script-card script-card--official">
+                        <h3>Image Compressor</h3>
+                        <p>Compresses JPG and PNG images.</p>
+                        <div class="card-footer">
+                            <span class="category">Media</span>
+                            <button>View</button>
+                        </div>
+                    </article>
+                </div>
+             </section>
+
+
+         <!-- User's scripts section -->
+
+         <section class="view-section" id="my-scripts">
+
+            <h3>My Scripts</h3>
+            <div class="script-list" >
+               <article class="script-card">
+                  <h3>My Custom Backup</h3>
+                  <p>Backs up my project folder to an external drive.</p>
+                   <div class="card-footer">
+                      <span class="category">Backup</span>
+                      <button>View</button>
+                  </div>
+              </article>
+          </div>
+         </section>
+
+         <!-- Community scripts section -->
+            <section class="view-section" id="comunity-scripts">
+                <h3>Community Scripts</h3>
+                <div class="script-list" >
+                   <article class="script-card">
+                      <h3>QR Code Generator</h3>
+                      <p>Generates QR codes from text or URLs with customizable size and format.</p>
+                       <div class="card-footer">
+                          <span class="category">Automation</span>
+                          <button>View</button>
+                      </div>
+                  </article>
+                  <article class="script-card">
+                      <h3>PDF Merger</h3>
+                      <p>Combines multiple PDF files into a single document with custom ordering.</p>
+                       <div class="card-footer">
+                          <span class="category">File Management</span>
+                          <button>View</button>
+                      </div>
+                  </article>
+                  <article class="script-card">
+                      <h3>YouTube Downloader</h3>
+                      <p>Downloads YouTube videos in various formats and quality settings.</p>
+                       <div class="card-footer">
+                          <span class="category">Media</span>
+                          <button>View</button>
+                      </div>
+                  </article>
+                  <article class="script-card">
+                      <h3>Password Generator</h3>
+                      <p>Creates secure passwords with customizable length and character sets.</p>
+                       <div class="card-footer">
+                          <span class="category">Automation</span>
+                          <button>View</button>
+                      </div>
+                  </article>
+              </div>
+            </section>
+        </section>
+
+         <!-- ==================================================== -->
+        <!-- Script Detail View: Shows details for one script     -->
+        <!-- ==================================================== -->
+         <section id="script-detail-view">
+            <h2>File Organizer</h2>
+            <p>This script will organize the files in a directory/folder into subfolders based on exetnsion/type of file(e.g. images, documents, videos, music, etc.) </p>
+            <form action="">
+                <div class="form-group">
+                    <label for="folder-path">Folder to organize: </label>
+                    <input type="text" id="folder-path" name="folder-path" placeholder="C:\Users\YourName\Downloads" required>
+                    <button type="submit" class="browse-button">Browse...</button>
+                </div>
+                <button type="submit" class="run-button">Run Script</button>
+            </form>
+            <div class="output-console">
+                <h3>Output </h3>
+                <pre><code>Awaiting execution...</code></pre>
+            </div>
+         </section>
+        <!-- Settings View: User preferences and configurations -->
+        <section class="settings-view view-section" id="settings-view" >
+            <h2>Settings</h2>
+            <p>Configure your application settings below.</p>
+            <form class="settings-form" action="">
+                <div class="form-group">
+                    <label for="scripts-location"> Scripts Folder Location:</label>
+                    
+                    <input type="text" name="scripts-location" id="scripts-location" placeholder="C:\Users\YourName\Scripts" required>
+                    <button type="submit" class="run-button">Change</button>
+                </div>
+
+            
+            </form>
+        </section>
+    </main>
+
+    </div>
+    <!-- Main app footer -->
+     <footer class="app-footer">
+        <p>&copy;2025 ScriptHub. All rights reserved.</p>
+        <p>Version 1.0.0</p>
+     </footer>
+
+     <script src="./src/js/main.js" defer></script>
+</body>
+</html>

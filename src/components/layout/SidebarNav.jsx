@@ -1,28 +1,30 @@
 
 
 function SidebarNav({
+    dashboardFilter,
     activeView,
     onViewChange,
     navItems = [
-        { id: 'official-scripts', label: 'Official Scripts' },
-        { id: 'my-scripts', label: 'My Scripts' },
-        { id: 'comunity-scripts', label: 'Community Scripts' },
-        { id: 'settings-view', label: 'Settings' }
+        { id: 'dashboard', filter: 'official', label: 'Official Scripts' },
+        { id: 'dashboard', filter: 'my', label: 'My Scripts' },
+        { id: 'dashboard', filter: 'community', label: 'Community Scripts' },
+        { id: 'settings', filter: null, label: 'Settings' }
     ]
-}){
-    return(
+}) {
+    return (
         <nav className="sidebar-nav">
             <ul>
                 {
                     navItems.map(item => {
-                        return(
-                            <li key={item.id}>
-                                <a 
-                                    href={`#${item.id}`} 
-                                    className={activeView===item.id ? "active-link":""}
-                                    onClick={(e)=>{
+                        const isActive = (activeView === item.id && (item.filter === null || dashboardFilter === item.filter))
+                        return (
+                            <li key={`${item.id}-${item.filter || 'no-filter'}`}>
+                                <a
+                                    href={`#${item.id}`}
+                                    className={isActive ? "active-link" : ""}
+                                    onClick={(e) => {
                                         e.preventDefault();
-                                        onViewChange(item.id);
+                                        onViewChange(item.id, item.filter);
                                     }}
                                 >{item.label}</a>
                             </li>

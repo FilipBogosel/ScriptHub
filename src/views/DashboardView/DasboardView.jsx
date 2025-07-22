@@ -4,7 +4,7 @@ import ScriptSection from "../../components/script/ScriptSection";
 //categories must be an array of objects, each containing { value: string, label: string }
 function DashboardView({
     scripts=[],
-    currentView='official',
+    dashboardFilter='official',
     onSearchChange,
     searchValue='', 
     selectedCategory='all',
@@ -15,15 +15,15 @@ function DashboardView({
 }){
 
     let id,title;
-    if(currentView === "official"){
+    if(dashboardFilter === "official"){
         id="official-scripts";
         title="Official Scripts";
     }
-    else if(currentView==="my"){
+    else if(dashboardFilter==="my"){
         id="my-scripts";
         title="My Scripts"
     }
-    else if(currentView === "community") {
+    else if(dashboardFilter === "community") {
         id="community-scripts";
         title="Community Scripts"
     }

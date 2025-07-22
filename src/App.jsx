@@ -5,14 +5,14 @@ import Footer from './components/layout/Footer';
 import DashboardView from './views/DashboardView/DasboardView';
 import ScriptDetailView from './views/ScriptDetailView/ScriptDetailView';
 import SettingsView from './views/SettingsView/SettingsView';
-import { mockScripts, categories } from './data/mockData';
+import { officialMockScripts, myMockScripts, communityMockScripts, categories } from './data/mockData';
 
 function App() {
   
 
   return (
     <>
-    
+
     </>
   );
 }
