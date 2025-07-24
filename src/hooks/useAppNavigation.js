@@ -19,7 +19,10 @@ export function useAppNavigation() {
         else if(viewId==='settings'){
             setCurrentView('settings');
         }
-
+        else if(viewId==='script-detail'){
+            setCurrentView('script-detail');
+        }
+        
         if(viewId!=='script-detail'){
             setSelectedScript(null);
         }

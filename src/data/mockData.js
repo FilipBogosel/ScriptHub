@@ -289,3 +289,5 @@ export const communityMockScripts = [
         ]
     }
 ];
+
+export let rootFolder = 'C:\\Users\\YourName\\Documents\\ScriptHub'; // Default root folder for file inputs

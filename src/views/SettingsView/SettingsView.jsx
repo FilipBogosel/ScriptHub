@@ -44,8 +44,11 @@ function SettingsView({
 
     return (
         <section className="settings-view view-section" id="settings-view" >
-            <h2>Settings</h2>
-            <p>Your settings and important information.</p>
+            <div className="settings-header">
+                <h2>Settings</h2>
+                <p>Your settings and important information.</p>
+            </div>
+            
             {
                 isLoggedIn ? (
                     <div className="account-info-card">

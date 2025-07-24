@@ -58,7 +58,7 @@ export function useScriptExecution() {
         finally{setIsDownloading(false);}
     };
 
-    const handleUploadScript = async (formData, script) => {
+    const handleUploadScript = async (script) => {
         setIsUploading(true);
         setExecutionError('');
         setOutput('Starting script uploading...');
@@ -103,7 +103,8 @@ export function useScriptExecution() {
         handleBrowseFile,
         handleRunScript,
         handleDownloadScript,
-        handleUploadScript
+        handleUploadScript,
+        handleFormChange
     });
 
 }
