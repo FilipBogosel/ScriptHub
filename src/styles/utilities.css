@@ -4,6 +4,12 @@
 
 /* Add your utility classes here as you learn */
 
+/* General view sections to ensure proper height */
+.view-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
 
 .active-link{
     color: var(--accent-hover);

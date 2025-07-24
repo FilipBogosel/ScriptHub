@@ -32,7 +32,7 @@ function DashboardView({
         title="Official Scripts"
     }
     return(
-        <section id="dashboard-view">
+        <section id="dashboard-view" className="view-section">
             <h2 id="dashboard-title">Dashboard</h2>
             <Toolbar 
                 searchValue={searchValue}

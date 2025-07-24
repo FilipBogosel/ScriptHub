@@ -30,7 +30,20 @@ export function useAuth(){
         // The main process would then handle opening the Google login window,
         // capturing the redirect, exchanging the code for a token, and
         // finally sending your app's own JWT back to the UI.
+
+        //testLogin(); // For testing purposes, replace with actual OAuth flow
     };
+
+    const testLogin = () => {
+        setIsAuthLoading(true);
+        setLoginError('');
+        console.log('Starting test login');
+        // This is a mock implementation for testing purposes.
+        // In a real app, you would replace this with actual authentication logic.
+        setTimeout(() => {
+            setSuccessfulLogin({ username: 'testuser', email: 'test@email.com', provider: 'github'}, 'mock-auth-token');
+        }, 1000);
+    }
 
     // helper function to set the final state
     // This function would be called by the listener that receives the

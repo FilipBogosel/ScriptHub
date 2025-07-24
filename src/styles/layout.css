@@ -46,6 +46,9 @@ body {
 .content-area{
     padding: 2rem;
     flex-grow: 1;
+    min-height: calc(100vh - 120px); /* Account for header and footer height */
+    display: flex;
+    flex-direction: column;
 }
 
 .app-layout{

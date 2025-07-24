@@ -6,10 +6,11 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 0 1rem;
-    min-height: calc(100vh - 200px); /* Ensure footer stays at bottom */
+    min-height: 100%; /* Fill the content area */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    flex: 1; /* Allow it to grow within the content area */
 }
 
 .settings-header {

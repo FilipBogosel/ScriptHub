@@ -82,9 +82,9 @@ function ScriptDetailView({
         return(<div>Script not found</div>)
     }
     return (
-        <section id="script-detail-view">
+        <section id="script-detail-view" className="view-section">
             <div className="script-detail-header">
-                <Button className="back-button" onClick={onBack}>🔙</Button>
+                <Button className="back-button" onClick={onBack}>⬅</Button>
                 <h2>{script.name}</h2>
                 <CategoryBadge category={script.category} />
             </div>
@@ -94,7 +94,7 @@ function ScriptDetailView({
                 (<div className="community-script-details">
                     <div className="author-info">
                         <h3>Community Script</h3>
-                        <p>About:</p>
+                        <p>About this script:</p>
                         <div className="script-metadata">
                             <span>Author: {script.author || 'Anonymous'}</span>
                             <span>Downloads: {script.downloadCount || 0}</span>
@@ -102,7 +102,7 @@ function ScriptDetailView({
                         </div>
                     </div>
 
-                    {executionError && <p className="error-message">{executionError}</p>}
+                    {executionError && <div className="error-message">{executionError}</div>}
 
                     <Button
                         onClick={() => onDownload(script)}
@@ -114,19 +114,19 @@ function ScriptDetailView({
                 </div>) :
                 (
                     <>
-                        <form onSubmit={(e) => { e.preventDefault(); onRun(formData, script) }}           className="script-form">
+                        <form onSubmit={(e) => { e.preventDefault(); onRun(formData, script) }} className="script-form">
                             {script.parameters && script.parameters.map((param) => (
                                 <FormGroup label={param.label} key={param.name} htmlFor={param.name} >
                                     {renderInput(param)}
                                 </FormGroup>
                             ))}
-                            {executionError && <p className="error-message">{executionError}</p>}
+                            {executionError && <div className="error-message">{executionError}</div>}
 
                             <Button
                                 type="submit"
                                 disabled={isRunning}
                                 variant="run"
-                            >{isRunning ? 'Running...' : 'Run script'}</Button>
+                            >{isRunning ? 'Running Script...' : 'Run Script'}</Button>
                         </form>
                         {scriptType === 'my' && (
                             <Button
@@ -135,7 +135,7 @@ function ScriptDetailView({
                                 className="upload-button" 
                                 onClick={() => onUpload(script)}
                                 disabled={isUploading}>
-                                {isUploading ? 'Uploading...' : 'Upload Script'}
+                                {isUploading ? 'Uploading...' : 'Share Script'}
                             </Button>
                         )}
 
@@ -143,7 +143,6 @@ function ScriptDetailView({
                     </>
                 )}
                     
-            )
             
 
 
