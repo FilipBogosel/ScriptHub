@@ -1,7 +1,34 @@
 {
-    "name": "Prefixer",
-    "version": "1.0.0",
+    "id": "file-prefixer",
+    "name": "File Prefixer",
+    "title": "File Prefixer",
     "description": "Prefixes all file names with a specified string.",
-    "category": "File Management",
-    "tags": ["File Management", "Prefixer", "Rename", "Files"]
+    "longDescription": "This script adds a custom prefix to all files in a directory, along with a sequential number. Files are processed in order of their modification time, and subdirectories are skipped.",
+    "version": "1.0.0",
+    "category": "file-management",
+    "isNew": false,
+    "type": "official",
+    "author": "ScriptHub",
+    "language": "python",
+    "tags": ["File Management", "Rename", "Batch Processing", "Organization"],
+    "parameters": [
+        {
+            "name": "folder-path",
+            "label": "Folder containing files:",
+            "type": "file",
+            "placeholder": "C:\\Users\\YourName\\Documents",
+            "required": true,
+            "description": "Select the folder containing files to be renamed"
+        },
+        {
+            "name": "prefix",
+            "label": "Prefix text:",
+            "type": "text",
+            "placeholder": "Document",
+            "required": true,
+            "description": "Text to add at the beginning of each filename"
+        }
+    ],
+    "requirements": ["python"],
+    "outputFormat": "console"
 }

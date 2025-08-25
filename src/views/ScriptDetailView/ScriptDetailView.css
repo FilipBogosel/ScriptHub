@@ -13,8 +13,12 @@
 }
 
 .script-detail-header .back-button {
-    padding: 0.5rem 1rem;
+    padding: 0 0.7rem;
     margin-left: 0;
+    font-size: 2rem;
+    text-align: center;
+    padding-bottom: 0.15rem;
+
 }
 
 /* Script Description */

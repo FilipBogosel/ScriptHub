@@ -15,7 +15,6 @@ export function useAuth(){
     const [usernameSuccess, setUsernameSuccess] = useState('');
 
 
-    // 2. The NEW function for social logins
     const loginWithProvider = async (provider) => { // provider would be 'google', 'github', etc.
         setIsAuthLoading(true);
         setLoginError('');

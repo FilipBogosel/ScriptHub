@@ -1,7 +1,26 @@
 {
-    "name": "Organizer",
+    "id": "file-organizer",
+    "name": "File Organizer",
+    "title": "File Organizer",
+    "description": "Organizes files in a folder by extension.",
+    "longDescription": "This script will organize the files in a directory/folder into subfolders based on extension/type of file (e.g. images, documents, videos, music, productivity files, source code, archives, executables, etc.)",
     "version": "1.0.0",
-    "description": "Organizes files using extensions.",
-    "category": "File Management",
-    "tags": ["File Management", "Organizer", "Move", "Files"]
+    "category": "file-management",
+    "isNew": false,
+    "type": "my",
+    "author": "BOGO",
+    "language": "python",
+    "tags": ["File Management", "Organization", "Automation", "Folder Cleanup"],
+    "parameters": [
+        {
+            "name": "folder-path",
+            "label": "Folder to organize:",
+            "type": "file",
+            "placeholder": "C:\\Users\\YourName\\Downloads",
+            "required": true,
+            "description": "Select the folder containing files to be organized by extension"
+        }
+    ],
+    "requirements": ["python"],
+    "outputFormat": "console"
 }
