@@ -1,3 +1,3 @@
-import { contextBridge, ipcRenderer } from "electron";
+const { contextBridge, ipcRenderer } = require('electron');
 
-contextBridge.executeInMainWorld('electronAPI', {loadScripts: () => ipcRenderer.invoke('loadScripts')});
+contextBridge.exposeInMainWorld('electronAPI', {loadScripts: () => ipcRenderer.invoke('loadScripts')});

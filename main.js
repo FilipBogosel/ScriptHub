@@ -13,7 +13,9 @@ function createWindow() {
         width: 800, 
         height: 600, 
         webPreferences: {
-            preload:path.join(__dirname,'preload.js')
+            preload:path.join(__dirname,'preload.js'),
+            contextIsolation: true,
+            nodeIntegration: false
         }
      });
     win.loadURL('http://localhost:5173');
@@ -69,6 +71,8 @@ async function loadScripts() {
             }
             catch (error) {
                 console.error(`Error reading metadata for ${folderName}:`, error);
+                // Skip this folder if metadata.json is missing or invalid
+                continue;
             }
 
         }

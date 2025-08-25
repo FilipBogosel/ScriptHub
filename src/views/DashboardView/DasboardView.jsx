@@ -48,8 +48,10 @@ function DashboardView({
                 onScriptView={onScriptView}
                 scripts={scripts}
             >
-
             </ScriptSection>
+            {scripts.length === 0 && (
+                <p style={{ textAlign: 'center', padding: '2rem'}}>No scripts found.</p>
+            )}
         </section>
     );
 }
