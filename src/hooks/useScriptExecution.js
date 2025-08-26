@@ -83,10 +83,33 @@ export function useScriptExecution() {
         finally { setIsUploading(false); }
     };
 
-    const handleBrowseFile = (fieldName) => {
-        // Mock file selection - replace with real file dialog
-        const mockPath = `C:\\Users\\Example\\${fieldName}-${Date.now()}`;
-        handleFormChange(fieldName, mockPath);
+    const handleBrowseFile = async (fieldName) => {
+        try{
+            const dialogOptions = {
+                title:'Select File or FOlder',
+                properties: ['openFile', 'openDirectory'],
+            };
+            if(fieldName.toLowerCase().includes('folder')){
+                dialogOptions.properties = ['openDirectory'];
+                dialogOptions.title = 'Select Folder';
+            }
+            if(fieldName.toLowerCase().includes('file')){
+                dialogOptions.properties = ['openFile'];
+                dialogOptions.title = 'Select File';    
+            }
+            const result = await window.electronAPI.browseFiles(dialogOptions);
+            if(!result.canceled && result.filePaths.length>0){
+                const selectedPath = result.filePaths[0];
+                handleFormChange(fieldName, selectedPath);
+            }
+            
+        }
+        catch(error){
+            console.error(error);
+            setExecutionError(`❌ Error browsing files: ${error.message}`);
+        }
+        
+        
     };
 
     const resetExecutionState = () => {

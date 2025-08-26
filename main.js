@@ -1,4 +1,4 @@
-import { app, BrowserWindow,ipcMain } from 'electron'
+import { app, BrowserWindow,ipcMain, dialog } from 'electron'
 import path from 'path';
 import fs from 'fs/promises';
 import process from 'process';
@@ -105,6 +105,17 @@ ipcMain.handle('executeScript', async (event, {scriptPath, args}) => {
 
 ipcMain.handle('getRootFolder', () => {
     return path.join(__dirname, 'scripts');
+});
+
+ipcMain.handle('browseFile', async (event, options) => {
+    try{
+        const res = await dialog.showOpenDialog(BrowserWindow.getFocusedWindow(), options);
+        return res;
+    }
+    catch(err){
+        console.error(err);
+        throw err;
+    }
 });
 
 
