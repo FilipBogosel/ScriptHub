@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs/promises';
 import process from 'process';
 import { fileURLToPath } from 'url';
-//import { stat } from 'fs';
+import { spawn } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -84,4 +84,30 @@ ipcMain.handle('loadScripts', async () => {
     const scripts = await loadScripts();
     return scripts;
 });
+
+ipcMain.handle('executeScript', async (event, {scriptPath, args}) => {
+    const executablePath = path.join(scriptPath,'script.exe');
+    const child = spawn(executablePath,args);
+
+    child.stdout.on('data', (data)=>{
+        event.sender.send('script-output', data.toString());
+    });
+
+    child.stderr.on('data', (data)=>{
+        event.sender.send('script-output', data.toString());
+    });
+
+    child.on('close', (code)=>{
+        event.sender.send('script-output', `\n--- Script finished with code ${code} ---`);
+    });
+
+});
+
+ipcMain.handle('getRootFolder', () => {
+    return path.join(__dirname, 'scripts');
+});
+
+
+
+
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 export function useScriptExecution() {
     const [isRunning, setIsRunning] = useState(false);
@@ -10,52 +10,60 @@ export function useScriptExecution() {
     const [output, setOutput] = useState('Awaiting execution...');
     const [executionError, setExecutionError] = useState('');
 
+    useEffect(() => {
+        const removeListener = window.electronAPI.onScriptOutput((data) => {
+            setOutput(prev => prev + data);
+            if (data.includes('--- Script finished')) {
+                setIsRunning(false);
+            }
+        });
+        return () => removeListener();
+    }, []);
+
     //function to initialize the parameters form in detail view
     const initializeFormData = (script) => {
         const initialData = {};
-        script.parameters?.forEach(param=>{
+        script.parameters?.forEach(param => {
             initialData[param.name] = '';
         });
         setFormData(initialData);
     };
 
     //handle input changes in the form
-    const handleFormChange = (fieldName, value) =>{
+    const handleFormChange = (fieldName, value) => {
         setFormData(prev => ({ ...prev, [fieldName]: value }));
     };
 
-    const handleRunScript = async (formData, script) => {
+    const handleRunScript = useCallback(async (formData, script) => {
         setIsRunning(true);
         setExecutionError('');
         setOutput('Starting script execution...');
 
-        try{
-            //mock/test implementation - to be replaced 
-            await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate script execution delay
-            setOutput(`Script "${script.name}" executed successfully!`);
-        }
-        catch(error){
-            setExecutionError(`❌ Error executing script: ${error.message}`);
-            setOutput("Execution failed!");
-        }
-        finally{setIsRunning(false);}
-    };
+        const paramsArray = script.parameters.map(p=>formData[p.name]||'');
+
+        await window.electronAPI.executeScript({
+            scriptPath: script.folderPath,
+            args: paramsArray
+        });
+        
+
+    },[]);
 
     const handleDownloadScript = async (script) => {
         setIsDownloading(true);
         setExecutionError('');
         setOutput('Starting script download...');
 
-        try{
+        try {
             //mock/test implementation - to be replaced 
             await new Promise(resolve => setTimeout(resolve, 2500)); // Simulate script download delay
             setOutput(`"${script.name}" downloaded successfully!`);
         }
-        catch(error){
+        catch (error) {
             setExecutionError(`❌ Error downloading script: ${error.message}`);
             setOutput("Download failed!");
         }
-        finally{setIsDownloading(false);}
+        finally { setIsDownloading(false); }
     };
 
     const handleUploadScript = async (script) => {
@@ -63,22 +71,22 @@ export function useScriptExecution() {
         setExecutionError('');
         setOutput('Starting script uploading...');
 
-        try{
+        try {
             //mock/test implementation - to be replaced 
             await new Promise(resolve => setTimeout(resolve, 3500)); // Simulate script execution delay
             setOutput(`Script "${script.name}" uploaded successfully!`);
         }
-        catch(error){
+        catch (error) {
             setExecutionError(`❌ Error uploading script: ${error.message}`);
             setOutput("Upload failed!");
         }
-        finally{setIsUploading(false);}
+        finally { setIsUploading(false); }
     };
 
-    const handleBrowseFile = (fieldName)=>{
+    const handleBrowseFile = (fieldName) => {
         // Mock file selection - replace with real file dialog
         const mockPath = `C:\\Users\\Example\\${fieldName}-${Date.now()}`;
-        handleFormChange(fieldName,mockPath);
+        handleFormChange(fieldName, mockPath);
     };
 
     const resetExecutionState = () => {
@@ -91,7 +99,7 @@ export function useScriptExecution() {
     };
 
 
-    return({
+    return ({
         isRunning,
         isUploading,
         isDownloading,

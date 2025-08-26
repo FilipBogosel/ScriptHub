@@ -1,6 +1,7 @@
 import qrcode
 import cv2
 import os
+import sys
 
 def genetate_qr_code(link):
     """
@@ -33,9 +34,9 @@ def save_qr_code(path, name, img):
 
 
 if __name__ == "__main__":
-    link = input("Enter the link: ")
-    path = input("Enter the path: ")
-    name = input("Enter the name: ")
+    link = sys.argv[1]
+    path = sys.argv[2]
+    name = sys.argv[3]
     img = genetate_qr_code(link)
     if not os.path.exists(path):
         print("Path does not exist")

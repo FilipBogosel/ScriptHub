@@ -11,11 +11,26 @@ import {useScriptData} from './hooks/useScriptData'
 import { useScriptExecution } from './hooks/useScriptExecution';
 import { useAuth } from './hooks/useAuth';
 import { categories } from './data/mockData';
-import { rootFolder } from './data/mockData';
+import { useState,useEffect } from 'react';
+
 
 let currentProvider = 'github'; // Temporary variable to hold the current auth provider
+
 function App() {
-  
+  const [rootFolder, setRootFolder] = useState('');
+  useEffect(() => {
+    const fetchRootFolder = async () => {
+      try {
+        const folder = await window.electronAPI.getRootFolder();
+        setRootFolder(folder);
+      } catch (error) {
+        console.error('Error fetching root folder:', error);
+        setRootFolder('Unable to load root folder');
+      }
+    };
+
+    fetchRootFolder();
+  }, []);
   const navigation = useAppNavigation();
 
   const data = useScriptData();
