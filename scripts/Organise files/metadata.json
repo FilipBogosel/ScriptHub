@@ -22,5 +22,6 @@
         }
     ],
     "requirements": ["python"],
-    "outputFormat": "console"
+    "outputFormat": "console",
+    "executable": "organize.exe"
 }

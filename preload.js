@@ -2,20 +2,21 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI', 
-    {loadScripts: () => ipcRenderer.invoke('loadScripts'),
+   {
+      loadScripts: () => ipcRenderer.invoke('loadScripts'),
 
-     executeScript: (args) => ipcRenderer.invoke('executeScript', args),
+   executeScript: (args) => ipcRenderer.invoke('executeScript', args),
 
-     onScriptOutput: (callback) => {
-        const subscription = (_event, value) => callback(value);
-        ipcRenderer.on('script-output', subscription);
+   onScriptOutput: (callback) => {
+      const subscription = (_event, value) => callback(value);
+      ipcRenderer.on('script-output', subscription);
 
-        return () => ipcRenderer.removeListener('script-output',subscription);
-     },
-     getRootFolder: () => ipcRenderer.invoke('getRootFolder'),
+      return () => ipcRenderer.removeListener('script-output',subscription);
+   },
+   getRootFolder: () => ipcRenderer.invoke('getRootFolder'),
 
-     browseFile: (options) => ipcRenderer.invoke('browseFile',options),
+   browseFile: (options) => ipcRenderer.invoke('browseFile',options),
 
 
 
-    });
+   });

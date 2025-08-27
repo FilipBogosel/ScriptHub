@@ -39,5 +39,6 @@
     ],
     "requirements": ["python", "qrcode", "opencv-python"],
     "outputFormat": "file",
-    "outputExtension": ".png"
+    "outputExtension": ".png",
+    "executable": "qr_generator.exe"
 }

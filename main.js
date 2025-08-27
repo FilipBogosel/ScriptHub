@@ -75,7 +75,6 @@ async function loadScripts() {
             }
             catch (error) {
                 console.error(`Error reading metadata for ${folderName}:`, error);
-                // Skip this folder if metadata.json is missing or invalid
                 continue;
             }
 
@@ -89,8 +88,8 @@ ipcMain.handle('loadScripts', async () => {
     return scripts;
 });
 
-ipcMain.handle('executeScript', async (event, {scriptPath, args}) => {
-    const executablePath = path.join(scriptPath,'script.exe');
+ipcMain.handle('executeScript', async (event, {scriptPath, executableName, args}) => {
+    const executablePath = path.join(scriptPath,executableName);
     const child = spawn(executablePath,args);
 
     child.stdout.on('data', (data)=>{

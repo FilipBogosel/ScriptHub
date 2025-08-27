@@ -30,5 +30,6 @@
         }
     ],
     "requirements": ["python"],
-    "outputFormat": "console"
+    "outputFormat": "console",
+    "executable": "prefix.exe"
 }

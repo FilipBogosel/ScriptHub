@@ -43,6 +43,7 @@ export function useScriptExecution() {
 
         await window.electronAPI.executeScript({
             scriptPath: script.folderPath,
+            executableName: script.executable,
             args: paramsArray
         });
         
