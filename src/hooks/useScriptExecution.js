@@ -97,7 +97,7 @@ export function useScriptExecution() {
                 dialogOptions.properties = ['openFile'];
                 dialogOptions.title = 'Select File';    
             }
-            const result = await window.electronAPI.browseFiles(dialogOptions);
+            const result = await window.electronAPI.browseFile(dialogOptions);
             if(!result.canceled && result.filePaths.length>0){
                 const selectedPath = result.filePaths[0];
                 handleFormChange(fieldName, selectedPath);

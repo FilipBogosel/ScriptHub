@@ -14,7 +14,7 @@ contextBridge.exposeInMainWorld('electronAPI',
      },
      getRootFolder: () => ipcRenderer.invoke('getRootFolder'),
 
-     browseFiles: (options) => ipcRenderer.invoke('browseFile',options),
+     browseFile: (options) => ipcRenderer.invoke('browseFile',options),
 
 
 

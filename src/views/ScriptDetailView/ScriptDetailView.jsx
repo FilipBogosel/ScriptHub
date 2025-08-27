@@ -56,6 +56,8 @@ function ScriptDetailView({
                             value={formData[param.name]}
                             placeholder={param.placeholder}
                             onChange={(e) => onFormChange(param.name, e.target.value)}
+                            required={param.required}
+
                         />
 
                         <Button
@@ -72,6 +74,7 @@ function ScriptDetailView({
                         value={formData[param.name]}
                         placeholder={param.placeholder}
                         onChange={(e) => onFormChange(param.name, e.target.value)}
+                        required={param.required}
                     />
                 );
 

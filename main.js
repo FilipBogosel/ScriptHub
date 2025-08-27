@@ -18,7 +18,7 @@ function createWindow() {
             nodeIntegration: false
         }
      });
-    win.loadURL('http://localhost:5173');
+    win.loadURL('http://localhost:5173');//to be changed to loadFile in production
 }
 
 app.whenReady().then(createWindow);
