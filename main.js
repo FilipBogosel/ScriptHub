@@ -16,7 +16,10 @@ function createWindow() {
             preload:path.join(__dirname,'preload.js'),
             contextIsolation: true,
             nodeIntegration: false
-        }
+        },
+        title: "ScriptHub",
+        icon: path.join(__dirname, 'public', 'icon.png')
+
      });
     win.loadURL('http://localhost:5173');//to be changed to loadFile in production
 }
@@ -27,6 +30,7 @@ app.on('window-all-closed', () => {
         app.quit();
     }
 });
+
 
 async function loadScripts() {
     const scriptsPath = path.join(__dirname, 'scripts');
