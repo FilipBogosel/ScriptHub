@@ -41,11 +41,24 @@ export function useScriptExecution() {
 
         const paramsArray = script.parameters.map(p=>formData[p.name]||'');
 
-        await window.electronAPI.executeScript({
-            scriptPath: script.folderPath,
-            executableName: script.executable,
-            args: paramsArray
-        });
+
+        try{
+            await window.electronAPI.executeScript({
+                scriptPath: script.folderPath,
+                executableName: script.executable,
+                args: paramsArray
+            });
+            initializeFormData(script); //reset form data after execution
+        }
+        catch(error){
+            setExecutionError(`❌ Error executing script: ${error.message}`);
+            setOutput("Error occured!!!");
+            setIsRunning(false);
+        }
+        
+
+
+
         
 
     },[]);
