@@ -100,7 +100,7 @@ export function useScriptExecution() {
     const handleBrowseFile = async (fieldName) => {
         try{
             const dialogOptions = {
-                title:'Select File or FOlder',
+                title:'Select File or Folder',
                 properties: ['openFile', 'openDirectory'],
             };
             if(fieldName.toLowerCase().includes('folder')){

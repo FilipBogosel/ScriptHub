@@ -1,15 +1,12 @@
 {
     "id": "qr-generator",
     "name": "QR Code Generator",
-    "title": "QR Code Generator",
     "description": "A simple QR code generator for text and URLs.",
     "longDescription": "Generate QR codes from any text or URL input. The generated QR code is saved as a PNG image with customizable filename and location. Perfect for creating quick access codes for websites, contact information, or any text data.",
     "version": "1.0.0",
     "category": "automation",
-    "isNew": false,
     "type": "official",
     "author": "ScriptHub",
-    "language": "python",
     "tags": ["QR Code", "Generator", "Graphics", "Encoding"],
     "parameters": [
         {
@@ -37,8 +34,6 @@
             "description": "Name for the QR code file (without extension)"
         }
     ],
-    "requirements": ["python", "qrcode", "opencv-python"],
-    "outputFormat": "file",
     "outputExtension": ".png",
     "executable": "qr_generator.exe"
 }
