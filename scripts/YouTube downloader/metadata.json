@@ -2,7 +2,7 @@
     "id": "youtube-downloader",
     "name": "YouTube Video Downloader",
     "description": "Download videos from YouTube in your preferred quality.",
-    "longDescription": "This script allows you to download videos from YouTube by providing a URL. You can select your preferred video quality, and the video will be downloaded to your specified location. If the requested quality is not available, the script will list available qualities.",
+    "longDescription": "This script allows you to download videos from YouTube by providing a URL. You can select your preferred video quality, and the video will be downloaded to your specified location. If the requested quality is not available, the script will list available qualities. VERY IMPORTANT: Open the video using more advanced media players like VLC or MPC-HC to ensure proper playback.",
     "version": "1.0.0",
     "category": "media",
     "type": "official",
