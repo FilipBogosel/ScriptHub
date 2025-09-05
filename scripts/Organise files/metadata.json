@@ -1,7 +1,6 @@
 {
     "id": "file-organizer",
     "name": "File Organizer",
-    "title": "File Organizer",
     "description": "Organizes files in a folder by extension.",
     "longDescription": "This script will organize the files in a directory/folder into subfolders based on extension/type of file (e.g. images, documents, videos, music, productivity files, source code, archives, executables, etc.)",
     "version": "1.0.0",

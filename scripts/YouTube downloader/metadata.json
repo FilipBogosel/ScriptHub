@@ -1,14 +1,42 @@
 {
-  "name": "youtube-downloader",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/FilipBogosel/ScriptHub.git"
-  },
-  "private": true
+    "id": "youtube-downloader",
+    "name": "YouTube Video Downloader",
+    "description": "Download videos from YouTube in your preferred quality.",
+    "longDescription": "This script allows you to download videos from YouTube by providing a URL. You can select your preferred video quality, and the video will be downloaded to your specified location. If the requested quality is not available, the script will list available qualities.",
+    "version": "1.0.0",
+    "category": "media",
+    "type": "official",
+    "author": "ScriptHub",
+    "tags": ["YouTube", "Video", "Download", "Media", "Streaming"],
+    "parameters": [
+        {
+            "name": "url",
+            "label": "YouTube URL:",
+            "type": "text",
+            "placeholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "required": true,
+            "description": "The URL of the YouTube video you want to download",
+            "defaultValue": ""
+        },
+        {
+            "name": "output-path",
+            "label": "Output path:",
+            "type": "file",
+            "placeholder": "C:\\Users\\YourName\\Videos\\video.mp4",
+            "required": true,
+            "description": "The full path where the video should be saved, including filename",
+            "defaultValue": ""
+        },
+        {
+            "name": "quality",
+            "label": "Video quality:",
+            "type": "select",
+            "options": [{"label":"144p","value":"144p"},{"label":"240p","value":"240p"},{"label":"360p","value":"360p"},{"label":"480p","value":"480p"},{"label":"720p","value":"720p"},{"label":"1080p","value":"1080p"},{"label":"1440p","value":"1440p"},{"label":"2160p (4K)","value":"2160p"}],
+            "defaultValue": "1080p",
+            "required": true,
+            "description": "Select quality"
+        }
+    ],
+    "outputExtension": ".mp4",
+    "executable": "YT_downloader.exe"
 }

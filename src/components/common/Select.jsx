@@ -6,7 +6,7 @@ import React from "react";
 function Select({
         name='',
         id,
-        options, 
+        options=[], 
         value, 
         className='',
         onChange}){

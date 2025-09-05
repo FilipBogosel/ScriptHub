@@ -17,7 +17,7 @@ function ScriptSection({
                 {scripts.map(script => (
                      <ScriptCard
                         key={script.id}
-                        title={script.title}
+                        title={script.name}
                         description={script.description}
                         category={script.category}
                         isNew={script.isNew}

@@ -24,7 +24,7 @@ export function useScriptExecution() {
     const initializeFormData = (script) => {
         const initialData = {};
         script.parameters?.forEach(param => {
-            initialData[param.name] = '';
+            initialData[param.name] = param.defaultValue !== undefined ? param.defaultValue : '';
         });
         setFormData(initialData);
     };
