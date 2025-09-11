@@ -2,7 +2,7 @@
 import Header from './components/layout/Header';
 import SidebarNav from './components/layout/SidebarNav';
 import Footer from './components/layout/Footer';
-import DashboardView from './views/DashboardView/DasboardView';
+import DashboardView from './views/DashboardView/DashboardView';
 import ScriptDetailView from './views/ScriptDetailView/ScriptDetailView';
 import SettingsView from './views/SettingsView/SettingsView';
 //import { officialMockScripts, myMockScripts, communityMockScripts, categories } from './data/mockData';
@@ -52,7 +52,7 @@ function App() {
   };
 
   const getScriptsForCurrentView = () => {
-      return(data.getFilteredScripts(navigation.dashboardFilter));
+      return(data.getFilteredScripts(navigation.dashboardFilter,navigation.viewAllCommunityScripts));
   };
 
   if (auth.isAuthLoading) {
@@ -85,6 +85,8 @@ function App() {
               onCategoryChange={(e)=>data.setSelectedCategory(e.target.value)}
               onScriptView={handleScriptSelect}
               categories={categories}
+              viewDatabaseScripts={navigation.viewAllCommunityScripts}
+              onToggleViewDatabaseScripts={navigation.toggleViewAllCommunityScripts}
             />
           );
         case 'script-detail':

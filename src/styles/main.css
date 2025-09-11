@@ -14,6 +14,7 @@
 @import './responsive.css';
 @import '../views/SettingsView/SettingsView.css';
 @import '../views/ScriptDetailView/ScriptDetailView.css';
+@import '../views/DashboardView/DashboardView.css';
 
 
 

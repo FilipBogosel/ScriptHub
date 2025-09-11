@@ -10,6 +10,13 @@ export function useAppNavigation() {
 
     const [selectedScript, setSelectedScript] = useState(null);
 
+    //create a state variable to know if we watch all the scripts in the database in the comunity section or only the ones we downloaded before
+    const [viewAllCommunityScripts, setViewAllCommunityScripts] = useState(false);
+
+    const toggleViewAllCommunityScripts = () => {
+        setViewAllCommunityScripts(!viewAllCommunityScripts);
+    };
+
     //handle the navigation bar
     const handleNavigation = (viewId,filter) => {
         if(viewId==='dashboard'&&filter){
@@ -44,7 +51,9 @@ export function useAppNavigation() {
         selectedScript,
         handleNavigation,
         handleScriptView,
-        handleBackToDashboard
+        handleBackToDashboard,
+        viewAllCommunityScripts,
+        toggleViewAllCommunityScripts
     };
 
 

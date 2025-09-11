@@ -7,7 +7,6 @@
     "category": "file-management",
     "type": "my",
     "author": "BOGO",
-    "language": "python",
     "tags": ["File Management", "Organization", "Automation", "Folder Cleanup"],
     "parameters": [
         {
@@ -20,7 +19,5 @@
             "description": "Select the folder containing files to be organized by extension"
         }
     ],
-    "requirements": ["python"],
-    "outputFormat": "console",
     "executable": "organize.exe"
 }

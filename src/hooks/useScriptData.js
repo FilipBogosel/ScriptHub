@@ -11,6 +11,8 @@ export function useScriptData() {
         community: []
     });
 
+    const [databaseScripts, setDatabaseScripts] = useState([]);
+
     useEffect(() => {
         async function fetchScripts(){
             const allScripts = await window.electronAPI.loadScripts();
@@ -27,8 +29,15 @@ export function useScriptData() {
 
     const [selectedCategory, setSelectedCategory] = useState('all');
 
-    const getFilteredScripts = (scriptType) => {
-        let filtered = scripts[scriptType] || [];
+    const getFilteredScripts = (scriptType, viewDatabase) => {
+        let filtered;
+        if(scriptType==='community'&&viewDatabase){
+            filtered = databaseScripts;
+        }
+        else{
+            filtered = scripts[scriptType] || [];
+        }
+
 
         if (selectedCategory !== 'all') {
             filtered = filtered.filter((script) => script.category === selectedCategory);
