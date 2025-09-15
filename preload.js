@@ -23,7 +23,10 @@ contextBridge.exposeInMainWorld('electronAPI',
       const subscription = () => callback();
       ipcRenderer.on('login-flow-complete', subscription);
       return () => ipcRenderer.removeListener('login-flow-complete',subscription);
-   }
+   },
+
+   getExecutablesInFolder: (folderPath) => ipcRenderer.invoke('getExecutables', folderPath), 
+   
 
 
 

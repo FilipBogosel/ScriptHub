@@ -22,7 +22,7 @@ function ScriptDetailView({
     isUploading = false,
     output = 'Awaiting execution...',
     executionError = '',
-
+    viewDatabaseScripts = false,
 }) {
 
     const renderInput = (param) => {
@@ -107,13 +107,13 @@ function ScriptDetailView({
 
                     {executionError && <div className="error-message">{executionError}</div>}
 
-                    <Button
+                    {viewDatabaseScripts && <Button
                         onClick={() => onDownload(script)}
                         type="button"
                         variant="run"
                         disabled={isDownloading}
                         className="download-button"
-                    >{isDownloading ? "Downloading..." : "Download Script"}</Button>
+                    >{isDownloading ? "Downloading..." : "Download Script"}</Button>}
                 </div>) :
                 (
                     <>

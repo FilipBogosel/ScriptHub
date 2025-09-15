@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 //import { officialMockScripts, myMockScripts, communityMockScripts } from "../data/mockData";
 import Fuse from "fuse.js";
+import api from '../services/api'
 
 //handles data and filtering logic
 export function useScriptData() {
@@ -21,8 +22,11 @@ export function useScriptData() {
             const my = allScripts.my;
             const community = allScripts.community;
             setScripts({official, my, community});
+
+            const response = await api.get('/api/scripts');
+            setDatabaseScripts(response.data);
         }
-        fetchScripts(); 
+        fetchScripts();
     }, []);
 
     const [searchValue, setSearchValue] = useState('');

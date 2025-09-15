@@ -113,6 +113,7 @@ function App() {
               executionError={execution.executionError}
               formData={execution.formData}
               onFormChange={execution.handleFormChange}
+              viewDatabaseScripts={navigation.viewAllCommunityScripts}
             />
           );
         case 'settings':
