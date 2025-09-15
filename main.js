@@ -141,7 +141,8 @@ ipcMain.handle('startLogin', async (event, provider)=>{
             nodeIntegration: false,
             webSecurity: false, // Disable web security for cross-origin requests
             session: session
-        }
+        },
+        title: "Login",
     });
 
     authWindow.loadURL(authUrl);

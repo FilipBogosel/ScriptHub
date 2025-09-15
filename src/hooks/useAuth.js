@@ -20,10 +20,7 @@ export function useAuth() {
         const checkAuthStatus = async () => {
             try {
                 setIsAuthLoading(true);
-                console.log('Checking auth status...');
 
-                // Log the cookies being sent with the request (if possible)
-                console.log('Making auth status request to server...');
 
                 const response = await api.get('/api/auth/status');
                 console.log('Auth status response:', response);
@@ -49,7 +46,7 @@ export function useAuth() {
 
         const cleanup = window.electronAPI.onLoginFlowComplete(()=>{
             console.log('Login flow complete, re-checking auth status...');
-            setTimeout(() => checkAuthStatus(), 2500); // Slight delay to ensure cookies are set
+            setTimeout(() => checkAuthStatus(), 1500); // Slight delay to ensure cookies are set
         });
 
         return () => {
@@ -72,7 +69,7 @@ export function useAuth() {
         }
 
     };
-    
+
 
  
     const handleLogout = async () => {
