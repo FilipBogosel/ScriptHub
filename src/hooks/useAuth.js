@@ -1,10 +1,11 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
+import api from '../services/api'
 
-export function useAuth(){
+
+export function useAuth() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState(null);
-    const [token, setToken] = useState(null);
-    const [isAuthLoading, setIsAuthLoading] = useState(true);
+    const [isAuthLoading, setIsAuthLoading] = useState(false);
 
     const [loginError, setLoginError] = useState('');
 
@@ -15,59 +16,75 @@ export function useAuth(){
     const [usernameSuccess, setUsernameSuccess] = useState('');
 
 
+    useEffect(() => {
+        const checkAuthStatus = async () => {
+            try {
+                setIsAuthLoading(true);
+                console.log('Checking auth status...');
+
+                // Log the cookies being sent with the request (if possible)
+                console.log('Making auth status request to server...');
+
+                const response = await api.get('/api/auth/status');
+                console.log('Auth status response:', response);
+                console.log('Auth status data:', response.data);
+
+                if (response.data && response.data.authenticated && response.data.user) {
+                    console.log('User authenticated:', response.data.user);
+                    setUser(response.data.user);
+                    setIsLoggedIn(true);
+                    return;
+                } else {
+                    console.log('Not authenticated - server response:', response.data);
+                }
+            } catch (err) {
+                console.error("Auth status check failed", err.response?.data || err.message);
+            } finally {
+                setIsAuthLoading(false);
+            }
+        };
+
+        checkAuthStatus();
+
+
+        const cleanup = window.electronAPI.onLoginFlowComplete(()=>{
+            console.log('Login flow complete, re-checking auth status...');
+            setTimeout(() => checkAuthStatus(), 2500); // Slight delay to ensure cookies are set
+        });
+
+        return () => {
+            cleanup();
+        };
+    }, []);
+
     const loginWithProvider = async (provider) => { // provider would be 'google', 'github', etc.
         setIsAuthLoading(true);
         setLoginError('');
-        if(provider){
-            console.log(`Starting OAuth flow with ${provider}`);
+        try {
+            await window.electronAPI.startLogin(provider);
         }
-        // This is the key part:
-        // In an Electron app, this function would send a message to the
-        // Electron main process to start the OAuth flow.
-        // e.g., window.electron.startAuth(provider);
+        catch (err) {
+            console.error('Login failed:', err);
+            setLoginError('Login failed. Please try again.');
+        }
+        finally {
+            setIsAuthLoading(false);
+        }
 
-        // The main process would then handle opening the Google login window,
-        // capturing the redirect, exchanging the code for a token, and
-        // finally sending your app's own JWT back to the UI.
-
-        //testLogin(); // For testing purposes, replace with actual OAuth flow
     };
+    
 
-    const testLogin = () => {
-        setIsAuthLoading(true);
-        setLoginError('');
-        console.log('Starting test login');
-        // This is a mock implementation for testing purposes.
-        // In a real app, you would replace this with actual authentication logic.
-        setTimeout(() => {
-            setSuccessfulLogin({ username: 'testuser', email: 'test@email.com', provider: 'github'}, 'mock-auth-token');
-        }, 1000);
-    }
-
-    // helper function to set the final state
-    // This function would be called by the listener that receives the
-    // token from the Electron main process.
-    const setSuccessfulLogin = (userData, authToken) => {
-        setUser(userData);
-        setToken(authToken);
-        setIsLoggedIn(true);
-        // localStorage.setItem('authToken', authToken);
-        setIsAuthLoading(false);
+ 
+    const handleLogout = async () => {
+        try {
+            await api.get('/api/auth/logout')
+            setIsLoggedIn(false);
+            setUser(null);
+        }
+        catch (err) {
+            console.error(err);
+        }
     };
-    const handleLogout = () => {
-        // localStorage.removeItem('authToken')
-        setIsLoggedIn(false);
-        setToken(null);
-        setUser(null);
-    };
-
-    //hook to keep the state of the app for 
-    useEffect(() => {
-        // const storedToken = localStorage.getItem('authToken');
-        // if (storedToken) { ... logic to log in ... }
-        setIsAuthLoading(false); // Done checking
-    }, []);
-
 
     const updateUsername = async (newUsername) => {
         setIsUsernameUpdating(true);
@@ -88,16 +105,14 @@ export function useAuth(){
 
 
 
-    return({
+    return ({
         isLoggedIn,
         user,
-        token,
         isAuthLoading,
         loginError,
         handleLogout,
         updateUsername,
         loginWithProvider,
-        setSuccessfulLogin,
         isUsernameUpdating,
         usernameError,
         usernameSuccess

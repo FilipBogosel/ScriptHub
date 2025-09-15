@@ -57,10 +57,6 @@ export function useScriptExecution() {
         }
         
 
-
-
-        
-
     },[]);
 
     const handleDownloadScript = async (script) => {

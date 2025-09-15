@@ -14,7 +14,6 @@ import { categories } from './data/mockData';
 import { useState,useEffect } from 'react';
 
 
-let currentProvider = 'github'; // Temporary variable to hold the current auth provider
 
 function App() {
   const [rootFolder, setRootFolder] = useState('');
@@ -121,7 +120,7 @@ function App() {
             <SettingsView
               user={auth.user}
               isLoggedIn={auth.isLoggedIn}
-              onLogin={() => auth.loginWithProvider(currentProvider)}
+              onLogin={auth.loginWithProvider}
               onLogout={auth.handleLogout}
               onUpdateUsername={auth.updateUsername}
               isUsernameUpdating={auth.isUsernameUpdating}

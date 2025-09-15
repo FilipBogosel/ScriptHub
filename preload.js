@@ -17,6 +17,14 @@ contextBridge.exposeInMainWorld('electronAPI',
 
    browseFile: (options) => ipcRenderer.invoke('browseFile',options),
 
+   startLogin: (provider) => ipcRenderer.invoke('startLogin', provider),
+
+   onLoginFlowComplete: (callback) => {
+      const subscription = () => callback();
+      ipcRenderer.on('login-flow-complete', subscription);
+      return () => ipcRenderer.removeListener('login-flow-complete',subscription);
+   }
+
 
 
    });

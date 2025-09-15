@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import FormGroup from "../../components/forms/FormGroup";
 import Button from "../../components/common/Button";
 import Input from "../../components/common/Input";
+import githubLogo from '../../assets/github.png';
+import googleLogo from '../../assets/google.png';
 
 //user -> the user object containing user settings(username, email, etc.)
 //The structure for the settings view is:
@@ -48,7 +50,7 @@ function SettingsView({
                 <h2>Settings</h2>
                 <p>Your settings and important information.</p>
             </div>
-            
+
             {
                 isLoggedIn ? (
                     <div className="account-info-card">
@@ -66,7 +68,19 @@ function SettingsView({
                         <Button onClick={onLogout} className="logout-button">Logout</Button>
                     </div>
                 ) : (
-                    <Button onClick={onLogin} className="login-button">Login</Button>
+                    <div className="account-info-card">
+                        <h3>Log in to ScriptHub</h3>
+                        <div className="login-providers">
+                            <Button className='login-btn-github' onClick={() => onLogin('github')}>
+                                <img src={githubLogo} alt="GitHub" width="18" height="18" />
+                                Login with GitHub
+                            </Button>
+                            <Button className="login-btn-google" onClick={() => onLogin('google')}>
+                                <img src={googleLogo} alt="Google" width="18" height="18" />
+                                Login with Google
+                            </Button>
+                        </div>
+                    </div>
                 )
             }
             {isLoggedIn && (
