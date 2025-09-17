@@ -79,10 +79,8 @@ export async function startLogin(event, provider){
 
 }
 
-//TODO- a clear cookies function for proper logout
 
 export async function clearAuthCookies(){
-    const serverUrl = 'https://scripthub-server-c0a43f13db60.herokuapp.com'; 
     const mainWindow = BrowserWindow.getAllWindows()[0];
     if(!mainWindow){
         console.error("Main window not found, cannot clear cookies!");
@@ -90,9 +88,18 @@ export async function clearAuthCookies(){
     }
 
     const session = mainWindow.webContents.session;
+    const domains = ['scripthub-server-c0a43f13db60.herokuapp.com', '.scripthub-server-c0a43f13db60.herokuapp.com', 'localhost', '.localhost', 'github.com', '.github.com', 'google.com', '.google.com', 'accounts.google.com', '.accounts.google.com', 'githubusercontent.com', '.githubusercontent.com'];
 
-    try{
-        await session.cookies.remove(serverUrl, 'connect.sid');
+    try {
+        // Get all cookies for your server domain
+        for (const domain of domains) {
+            const cookies = await session.cookies.get({ domain });
+            for (const cookie of cookies) {
+                console.log(`Removing cookie: ${cookie.name} from domain: ${domain}`);
+                await session.cookies.remove(`http${cookie.secure ? 's' : ''}://${domain}${cookie.path}`, cookie.name);
+            }
+        }
+        console.log('All authentication cookies cleared successfully');
     }
     catch(error){
         console.error('Failed to clear auth cookie', error.message);
