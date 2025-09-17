@@ -88,15 +88,27 @@ export function useAuth() {
         setIsUsernameUpdating(true);
         setUsernameError('');
         setUsernameSuccess('');
-        //mock execution, for debugging until doing backend
-        //to be replaced with actual API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-
-        if (newUsername.length >= 4) {
-            console.log('Username has been updated.');
-            setUsernameSuccess('Username updated successfully!');
-        } else {
-            setUsernameError('Username must be at least 4 characters long.');
+        try{
+            const response = await api.get(`/api/update-username/${encodeURIComponent(user._id)}/${encodeURIComponent(newUsername)}`);
+            console.log('Username update response:', response);
+            if(response.data && response.data.oldUsername && response.data.newUsername){
+                setUser(prevUser => ({...prevUser, username: newUsername}));
+                setUsernameSuccess('Username updated successfully!');
+                setUsernameError('');
+            }
+            else{
+                const errorMsg = response.data?.message || 'Failed to update username. Please try again.';
+                console.error('Username update failed:', errorMsg);
+                setUsernameError(errorMsg);
+                setIsUsernameUpdating(false);
+                return;
+            }
+        }
+        catch(err){
+            console.error('Username update failed:', err);
+            setUsernameError('Failed to update username. Please try again.');
+            setIsUsernameUpdating(false);
+            return;
         }
         setIsUsernameUpdating(false);
     };
