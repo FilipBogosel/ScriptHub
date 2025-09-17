@@ -7,7 +7,6 @@ import CategoryBadge from "../../components/common/CategoryBadge";
 
 function ScriptDetailView({
     script,
-    user,
     scriptType = 'official',
     formData = {},
     onFormChange,
@@ -135,7 +134,7 @@ function ScriptDetailView({
                                 type="button"   
                                 variant="run" 
                                 className="upload-button" 
-                                onClick={() => onUpload(script,user)}
+                                onClick={() => onUpload(script)}
                                 disabled={isUploading}>
                                 {isUploading ? 'Uploading...' : 'Share Script'}
                             </Button>

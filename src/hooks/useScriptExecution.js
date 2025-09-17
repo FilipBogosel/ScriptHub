@@ -77,7 +77,7 @@ export function useScriptExecution() {
         finally { setIsDownloading(false); }
     };
 
-    const handleUploadScript = async (script, user) => {
+    const handleUploadScript = async (script) => {
         setIsUploading(true);
         setExecutionError('');
         setOutput('Starting script uploading...');
@@ -98,8 +98,6 @@ export function useScriptExecution() {
             scriptData.append('category', script.category || 'media');
             scriptData.append('type', 'community');
             scriptData.append('tags', JSON.stringify(script.tags || []));
-            console.log('User: ', user);
-            scriptData.append('author', user._id || user.id);
             scriptData.append('parameters', JSON.stringify(script.parameters || []));
             scriptData.append('executable', script.executable || '');
             scriptData.append('outputExtension', script.outputExtension || '');

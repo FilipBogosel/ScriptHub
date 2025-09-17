@@ -101,7 +101,6 @@ function App() {
             <ScriptDetailView 
               onBack={backToDashboard}
               script={navigation.selectedScript}
-              user={auth.user}
               scriptType={navigation.dashboardFilter}
               isRunning={execution.isRunning}
               isDownloading={execution.isDownloading}
