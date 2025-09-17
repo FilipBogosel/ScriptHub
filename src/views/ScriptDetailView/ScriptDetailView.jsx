@@ -5,10 +5,9 @@ import Button from "../../components/common/Button";
 import OutputConsole from "../../components/forms/OutputConsole";
 import CategoryBadge from "../../components/common/CategoryBadge";
 
-
-
 function ScriptDetailView({
     script,
+    user,
     scriptType = 'official',
     formData = {},
     onFormChange,
@@ -24,7 +23,7 @@ function ScriptDetailView({
     executionError = '',
     viewDatabaseScripts = false,
 }) {
-
+    
     const renderInput = (param) => {
         // param object structure:
         // {
@@ -100,7 +99,7 @@ function ScriptDetailView({
                         <p>About this script:</p>
                         <div className="script-metadata">
                             <span>Author: {script.author || 'Anonymous'}</span>
-                            <span>Downloads: {script.downloadCount || 0}</span>
+                            <span>Downloads: {script.downloads || 0}</span>
                             <span>Rating: {script.rating || 'Not rated'}</span>
                         </div>
                     </div>
@@ -136,7 +135,7 @@ function ScriptDetailView({
                                 type="button"   
                                 variant="run" 
                                 className="upload-button" 
-                                onClick={() => onUpload(script)}
+                                onClick={() => onUpload(script,user)}
                                 disabled={isUploading}>
                                 {isUploading ? 'Uploading...' : 'Share Script'}
                             </Button>

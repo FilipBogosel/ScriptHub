@@ -25,8 +25,9 @@ contextBridge.exposeInMainWorld('electronAPI',
       return () => ipcRenderer.removeListener('login-flow-complete',subscription);
    },
 
-   getExecutablesInFolder: (folderPath) => ipcRenderer.invoke('getExecutables', folderPath), 
-   
+      getExecutables: (folderPath) => ipcRenderer.invoke('getExecutables', folderPath),//returns objects{name,buffer} 
+
+      clearAuthCookies: () => ipcRenderer.invoke('clearAuthCookies')
 
 
 

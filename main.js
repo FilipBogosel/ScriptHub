@@ -2,8 +2,8 @@ import { app, BrowserWindow, ipcMain, dialog } from 'electron'
 import path from 'path';
 import process from 'process';
 import { fileURLToPath } from 'url';
-import { startLogin } from './src/utils/authUtils';
-import { loadScripts, executeScript, getExecutablesBuffer } from './src/utils/scriptUtils';
+import { clearAuthCookies, startLogin } from './src/utils/authUtils.js';
+import { loadScripts, executeScript, getExecutablesBuffer } from './src/utils/scriptUtils.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,7 +35,7 @@ app.on('window-all-closed', () => {
 
 
 ipcMain.handle('loadScripts', async () => {
-    const scripts = await loadScripts();
+    const scripts = await loadScripts(__dirname);
     return scripts;
 });
 ipcMain.handle('executeScript', (event, scriptDetails) => executeScript(event, scriptDetails));
@@ -57,7 +57,16 @@ ipcMain.handle('browseFile', async (event, options) => {
 
 ipcMain.handle('startLogin', (event, provider) => startLogin(event, provider));
 
-ipcMain.handle('getExecutables', (folderPath) => getExecutablesBuffer(folderPath));
+ipcMain.handle('getExecutables', async (event, folderPath) => {
+    try {
+        return await getExecutablesBuffer(folderPath);
+    } catch (error) {
+        console.error('Error in getExecutables handler:', error);
+        throw error;
+    }
+});
+
+ipcMain.handle('clearAuthCookies', clearAuthCookies);
 
 
 

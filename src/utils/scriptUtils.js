@@ -1,12 +1,9 @@
 import path from 'path';
 import fs from 'fs/promises';
 import { spawn } from 'child_process';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
-export async function loadScripts() {
+export async function loadScripts(__dirname) {
     const scriptsPath = path.join(__dirname, 'scripts');
     let scriptFolders;
     try{

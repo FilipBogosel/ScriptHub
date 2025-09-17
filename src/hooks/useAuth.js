@@ -75,6 +75,7 @@ export function useAuth() {
     const handleLogout = async () => {
         try {
             await api.get('/api/auth/logout')
+            await window.electronAPI.clearAuthCookies();
             setIsLoggedIn(false);
             setUser(null);
         }

@@ -80,3 +80,22 @@ export async function startLogin(event, provider){
 }
 
 //TODO- a clear cookies function for proper logout
+
+export async function clearAuthCookies(){
+    const serverUrl = 'https://scripthub-server-c0a43f13db60.herokuapp.com'; 
+    const mainWindow = BrowserWindow.getAllWindows()[0];
+    if(!mainWindow){
+        console.error("Main window not found, cannot clear cookies!");
+        return;
+    }
+
+    const session = mainWindow.webContents.session;
+
+    try{
+        await session.cookies.remove(serverUrl, 'connect.sid');
+    }
+    catch(error){
+        console.error('Failed to clear auth cookie', error.message);
+    }
+
+}
