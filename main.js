@@ -3,7 +3,7 @@ import path from 'path';
 import process from 'process';
 import { fileURLToPath } from 'url';
 import { clearAuthCookies, startLogin } from './src/utils/authUtils.js';
-import { loadScripts, executeScript, getExecutablesBuffer } from './src/utils/scriptUtils.js';
+import { loadScripts, executeScript, getExecutablesBuffer, createScriptFolder, downloadAllFilesToFolder } from './src/utils/scriptUtils.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,7 +24,9 @@ function createWindow() {
     win.loadURL('http://localhost:5173');//to be changed to loadFile in production
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+    createWindow();
+});
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
@@ -67,6 +69,18 @@ ipcMain.handle('getExecutables', async (event, folderPath) => {
 });
 
 ipcMain.handle('clearAuthCookies', clearAuthCookies);
+
+ipcMain.handle('createScriptFolder', (event, options) => createScriptFolder(event, options));
+
+ipcMain.handle('downloadAllFilesToFolder', async (event, options) => {
+    try {
+        const result = await downloadAllFilesToFolder(event, options);
+        return result;
+    } catch (error) {
+        console.error('Download error in IPC handler:', error);
+        throw error;
+    }
+});
 
 
 

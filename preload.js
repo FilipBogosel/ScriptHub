@@ -25,9 +25,38 @@ contextBridge.exposeInMainWorld('electronAPI',
       return () => ipcRenderer.removeListener('login-flow-complete',subscription);
    },
 
-      getExecutables: (folderPath) => ipcRenderer.invoke('getExecutables', folderPath),//returns objects{name,buffer} 
+   getExecutables: (folderPath) => ipcRenderer.invoke('getExecutables', folderPath),//returns objects{name,buffer} 
 
-      clearAuthCookies: () => ipcRenderer.invoke('clearAuthCookies')
+   clearAuthCookies: () => ipcRenderer.invoke('clearAuthCookies'),
+
+   createScriptFolder: (options)=> ipcRenderer.invoke('createScriptFolder', options),
+
+      downloadAllFilesToFolder: (options) => ipcRenderer.invoke('downloadAllFilesToFolder', options),
+
+      onDownloadProgress: (callback) => {
+         const subscription = (_event, data) => callback(data);
+         ipcRenderer.on('download-progress', subscription);
+         return () => ipcRenderer.removeListener('download-progress', subscription);
+      },
+
+      onDownloadComplete: (callback) => {
+         const subscription = (_event, data) => callback(data);
+         ipcRenderer.on('download-complete', subscription);
+         return () => ipcRenderer.removeListener('download-complete', subscription);
+      },
+
+      onDownloadFailed: (callback) => {
+         const subscription = (_event, data) => callback(data);
+         ipcRenderer.on('download-failed', subscription);
+         return () => ipcRenderer.removeListener('download-failed', subscription);
+      },
+
+      onAllDownloadsComplete: (callback) => {
+         const subscription = (_event, data) => callback(data); // <- Add data parameter
+         ipcRenderer.on('all-downloads-complete', subscription);
+         return () => ipcRenderer.removeListener('all-downloads-complete', subscription);
+      }
+
 
 
 

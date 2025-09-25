@@ -21,6 +21,72 @@ export function useScriptExecution() {
         return () => removeListener();
     }, []);
 
+    //TODO: the use effect hook for setting up the listeners for download progress, completion, failure
+
+    useEffect(() => {
+        //Handler for download progress events
+        const downloadProgressHandler = (data) => {
+            const { fileName, progress } = data;
+            setOutput(prev => {
+                const lines = prev.split('\n');
+                const progressLine = `Downloading ${fileName}: ${progress}%`;
+                // Find if a line for this file already exists
+                const existingLineIndex = lines.findIndex(line => line.startsWith(`Downloading ${fileName}:`));
+
+                if (existingLineIndex >= 0) {
+                    // Update existing progress line
+                    lines[existingLineIndex] = progressLine;
+                }
+                else {
+                    // Add new progress line
+                    lines.push(progressLine);
+                }
+
+                return lines.join('\n');
+
+            });
+        };
+
+        //handler for download completion events
+        const downloadCompleteHandler = (data) => {
+            const { fileName } = data;
+            setOutput(prev => `${prev}\n ✅Downloaded: ${fileName}`);
+        };
+
+        const downloadFailedHandler = (data) => {
+            const { fileName, state } = data;
+            setOutput(prev => `${prev}\n❌ Failed to download ${fileName}: ${state}`);
+            setExecutionError(`Download failed: ${fileName} - ${state}`);
+        };
+
+        // Set up event listeners
+        const removeProgressListener = window.electronAPI.onDownloadProgress(downloadProgressHandler);
+        const removeCompleteListener = window.electronAPI.onDownloadComplete(downloadCompleteHandler);
+        const removeFailedListener = window.electronAPI.onDownloadFailed(downloadFailedHandler);
+
+        // Final download handler to set isDownloading to false when all downloads are done
+        const downloadCompleteAllHandler = (data) => {
+            const { completed, failed, total } = data;
+            if (failed === 0) {
+                setOutput(prev => `${prev}\n✅ All ${completed} files downloaded successfully!`);
+            } else {
+                setOutput(prev => `${prev}\n⚠️ Download completed: ${completed} succeeded, ${failed} failed out of ${total} total files`);
+            }
+            setIsDownloading(false);
+        };
+
+        const removeAllCompleteListener = window.electronAPI.onAllDownloadsComplete(downloadCompleteAllHandler);
+
+        // Clean up listeners when component unmounts
+        return () => {
+            removeProgressListener();
+            removeCompleteListener();
+            removeFailedListener();
+            removeAllCompleteListener();
+        };
+
+    }, []);
+
     //function to initialize the parameters form in detail view
     const initializeFormData = (script) => {
         const initialData = {};
@@ -66,13 +132,43 @@ export function useScriptExecution() {
         setOutput('Starting script download...');
 
         try {
-            //mock/test implementation - to be replaced 
-            await new Promise(resolve => setTimeout(resolve, 2500)); // Simulate script download delay
-            setOutput(`"${script.name}" downloaded successfully!`);
+            //Create the folder for the script
+            const rootFolder = await window.electronAPI.getRootFolder();
+
+            const scriptFolderPath = await window.electronAPI.createScriptFolder({
+                scriptFolderPath: rootFolder,
+                script: script
+            });
+
+            setOutput(`Created folder: ${scriptFolderPath}`);
+
+            const response = await api.get(`/api/scripts/${script._id}/download`);
+
+            if (!response.data || !response.data.urls || response.data.urls.length === 0) {
+                throw new Error('No files available for download!');
+            }
+
+            setOutput(`Downloading ${response.data.urls.length} files...`);
+
+            const downloadResult = await window.electronAPI.downloadAllFilesToFolder({
+                urls: response.data.urls,
+                folderPath: scriptFolderPath,
+                scriptName: script.name,
+                script: script
+            });
+
+            if (downloadResult.success) {
+                setOutput(prev => `${prev}\n✅ All ${downloadResult.completed} files downloaded successfully to: ${downloadResult.folder}`);
+            } else {
+                setOutput(prev => `${prev}\n⚠️ Download completed with some failures: ${downloadResult.completed} succeeded, ${downloadResult.failed} failed`);
+                setExecutionError(`Some files failed to download (${downloadResult.failed}/${downloadResult.total})`);
+            }
+
         }
         catch (error) {
+            console.error('Download error:', error);
             setExecutionError(`❌ Error downloading script: ${error.message}`);
-            setOutput("Download failed!");
+            setOutput(prev => `${prev}\nDownload failed!`);
         }
         finally { setIsDownloading(false); }
     };
@@ -103,8 +199,8 @@ export function useScriptExecution() {
             scriptData.append('outputExtension', script.outputExtension || '');
 
             let fileAdded = false;
-            for(const exe of executables){
-                if(!exe.buffer || exe.buffer.byteLength === 0){
+            for (const exe of executables) {
+                if (!exe.buffer || exe.buffer.byteLength === 0) {
                     console.warn(`Skipping empty file: ${exe.name}`);
                     continue;
                 }
@@ -112,7 +208,7 @@ export function useScriptExecution() {
                 console.log(`Adding file: ${exe.name}, size: ${exe.buffer.byteLength} bytes`);
                 const blob = new Blob([exe.buffer], { type: 'application/octet-stream' });
 
-                scriptData.append('scriptFiles', blob, exe.name);   
+                scriptData.append('scriptFiles', blob, exe.name);
                 fileAdded = true;
             }
             if (!fileAdded) {
@@ -150,13 +246,13 @@ export function useScriptExecution() {
             console.log('Upload response:', response.data);
 
         } catch (error) {
-        console.error('Upload error:', error);
-        console.error('Server response:', error.response?.data); // Add this line
-        const errorMessage = error.response?.data?.message || error.message || 'Unknown error';
-        setExecutionError(`❌ Error uploading script: ${errorMessage}`);
-        setOutput("Upload failed!");
-    } 
-         finally {
+            console.error('Upload error:', error);
+            console.error('Server response:', error.response?.data); // Add this line
+            const errorMessage = error.response?.data?.message || error.message || 'Unknown error';
+            setExecutionError(`❌ Error uploading script: ${errorMessage}`);
+            setOutput("Upload failed!");
+        }
+        finally {
             setIsUploading(false);
         }
     };
