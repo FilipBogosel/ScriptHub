@@ -91,7 +91,7 @@ function ScriptDetailView({
             </div>
             <p>{script.longDescription ? script.longDescription : script.description}</p>
 
-            {scriptType === 'community' ?
+            {(scriptType === 'community' && viewDatabaseScripts) ?
                 (<div className="community-script-details">
                     <div className="author-info">
                         <h3>Community Script</h3>
