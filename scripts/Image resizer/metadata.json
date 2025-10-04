@@ -1,0 +1,50 @@
+{
+  "name": "Image Resizer",
+  "description": "Resize given image to specified dimensions.",
+  "longDescription": "A powerful image resizing tool that allows you to resize images to custom dimensions while maintaining quality. Supports various image formats and provides options for aspect ratio preservation.",
+  "version": "1.0.0",
+  "author": "ScriptHub",
+  "category": "media",
+  "type": "official",
+  "tags": ["image", "resize", "photo", "graphics", "edit"],
+  "parameters": [
+    {
+      "name": "file_path",
+      "type": "file",
+      "description": "Path to the input image file",
+      "required": true,
+      "placeholder": "e.g., C:\\Users\\Username\\Pictures\\image.jpg",
+      "label": "Input File"
+    },
+    {
+      "name": "save_option",
+      "type": "select",
+      "description": "Choose where to save the resized image",
+      "options": [
+        {"label": "Overwrite original", "value": "overwrite"},
+        {"label": "Save as new file", "value": "new_file"}
+      ],
+      "defaultValue": "new_file",
+      "required": true,
+      "label": "Save Option"
+    },
+    {
+      "name": "width",
+      "type": "number",
+      "description": "Target width in pixels",
+      "required": true,
+      "placeholder": "e.g., 800",
+      "label": "Width (pixels)"
+    },
+    {
+      "name": "height",
+      "type": "number",
+      "description": "Target height in pixels",
+      "required": false,
+      "placeholder": "If not provided, height will be adjusted to maintain aspect ratio",
+      "label": "Height (pixels)"
+    }
+  ],
+  "outputExtension": "image",
+  "executable": "resizer.exe"
+}

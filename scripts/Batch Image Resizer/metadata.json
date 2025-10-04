@@ -1,0 +1,64 @@
+{
+  "name": "Batch Image Resizer",
+  "description": "Resize all images in a folder to specified dimensions with batch processing capabilities",
+  "version": "1.0.0",
+  "author": "ScriptHub",
+  "category": "media",
+  "tags": ["image", "resize", "batch", "processing", "PIL", "folder"],
+  "executable": "batch_resizer.exe",
+  "type": "official",
+  "parameters": [
+    {
+      "name": "folder_path",
+      "type": "file",
+      "label": "Folder Path",
+      "description": "Path to the folder containing images to resize",
+      "required": true,
+      "placeholder": "e.g., C:\\Users\\Username\\Pictures\\MyImages"
+    },
+    {
+      "name": "width",
+      "type": "number",
+      "label": "Width (pixels)",
+      "description": "Target width for resized images",
+      "required": true,
+      "min": 1,
+      "max": 10000,
+      "default": 800,
+      "placeholder": "e.g., 800"
+    },
+    {
+      "name": "height",
+      "type": "number",
+      "label": "Height (pixels)",
+      "description": "Target height for resized images",
+      "required": false,
+      "placeholder": "If not provided, height will be adjusted to maintain aspect ratio"
+    },
+    {
+      "name": "save_option",
+      "type": "select",
+      "label": "Save Option",
+      "description": "Choose how to save the resized images",
+      "required": true,
+      "options": [
+        { "value": "new_folder", "label": "New folder" },
+        { "value": "overwrite", "label": "Overwrites the originals" }
+        
+      ],
+        "default": "new_folder"
+    },
+    {
+      "name": "quality",
+      "type": "number",
+      "label": "Image Quality",
+      "description": "JPEG quality for output images (1-100)",
+      "required": false,
+      "min": 1,
+      "max": 100,
+      "default": 95,
+        "placeholder": "e.g., 95"
+    }
+  ],
+    "longDescription": "A script to batch resize all images in a specified folder to given dimensions. Supports various image formats and allows saving resized images in the same folder with a suffix or in a new folder. You can also set the JPEG quality for output images."
+}
