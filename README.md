@@ -38,10 +38,9 @@ This project is built on modern development principles to create a robust and ma
  | ----- | ----- |
 | Front-End | React, JavaScript, HTML, CSS (Tailwind CSS for styling) |
 | Desktop App | Electron, Node.js |
-| (Planned) Backend | Node.js, Express.js |
-| (Planned) Database | MongoDB (or similar NoSQL database) |
-| Styling | Tailwind CSS, Custom CSS |
-| Testing | Jest, React Testing Library (Planned) |
+| Backend | Node.js, Express.js |
+| Database | MongoDB (or similar NoSQL database) |
+| Styling | Custom CSS |
 
 ## ✅ Final State of the App
 
