@@ -1,0 +1,41 @@
+{
+    "name": "Video to MP3 Converter",
+    "description": "Extract audio from video files and save as MP3.",
+    "longDescription": "This script extracts the audio track from any video file and converts it to MP3 format. You can specify a custom output location and filename, or let the script save the MP3 in the same location as the source video with the same name.",
+    "version": "1.0.0",
+    "category": "media",
+    "type": "official",
+    "author": "ScriptHub",
+    "tags": ["Video", "Audio", "MP3", "Conversion", "Media", "Extract"],
+    "parameters": [
+        {
+            "name": "video-path",
+            "label": "Video file:",
+            "type": "file",
+            "placeholder": "C:\\Users\\YourName\\Videos\\video.mp4",
+            "required": true,
+            "description": "The full path to the video file from which to extract audio",
+            "defaultValue": ""
+        },
+        {
+            "name": "output-path",
+            "label": "Output folder:",
+            "type": "file",
+            "placeholder": "C:\\Users\\YourName\\Music",
+            "required": false,
+            "description": "Folder where the MP3 file will be saved (leave empty to save in same location as video)",
+            "defaultValue": ""
+        },
+        {
+            "name": "mp3-name",
+            "label": "MP3 filename:",
+            "type": "text",
+            "placeholder": "my_audio",
+            "required": false,
+            "description": "Custom name for the MP3 file (without extension, leave empty to use video filename)",
+            "defaultValue": ""
+        }
+    ],
+    "outputExtension": ".mp3",
+    "executable": "video-audio.exe"
+}
